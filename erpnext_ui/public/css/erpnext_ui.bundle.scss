@@ -1,0 +1,19 @@
+/*
+ * ERPNext UI — design tokens, theme states and the Desk adapter.
+ *
+ * Token files declare --ui-* custom properties only; they change nothing on
+ * their own. Visual changes come from adapters/, which apply only while the
+ * theme engine has set html[data-ui-adapter]. If the engine is disabled or
+ * fails, Desk keeps its native look. adapters/v16/ is the Desk layout layer
+ * (Phase 2); it also needs html[data-ui-layout="enhanced"].
+ */
+@import "tokens/typography";
+@import "tokens/layout";
+@import "tokens/components";
+@import "tokens/density";
+@import "tokens/colors";
+@import "adapters/v16";
+@import "adapters/v16/index";
+@import "components/preferences";
+@import "components/experiences";
+@import "components/home";

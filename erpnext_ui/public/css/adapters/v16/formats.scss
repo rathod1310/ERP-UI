@@ -1,0 +1,236 @@
+/* Layout presets and presentation formats (Phase 3, milestone 1).
+ *
+ * The layout engine sets one attribute per category on <html>; a preset is
+ * only a combination of these values. Every option is a token override or a
+ * small scoped rule on top of the Phase 2 layer, so all options work with all
+ * themes. "Standard" values add nothing: they are the Phase 2 Desk.
+ */
+
+/* ---------------------------------------------------------- navigation */
+#{$desk}[data-ui-nav="compact"] {
+	--ui-sidebar-width: 200px;
+	--ui-sidebar-item-height: calc(var(--ui-control-height-sm) + 2px);
+
+	.body-sidebar .standard-sidebar-item .sidebar-item-label {
+		font-size: var(--ui-font-size-xs);
+	}
+	.body-sidebar .standard-sidebar-item .item-anchor .sidebar-item-icon {
+		padding: 5px;
+	}
+	.body-sidebar .sidebar-header .header-subtitle {
+		display: none;
+	}
+	.body-sidebar {
+		gap: var(--ui-gap-xs);
+	}
+}
+/* "collapsed" is applied by the adapter through Frappe's own sidebar API;
+   the collapsed sidebar needs no extra CSS. */
+
+/* ---------------------------------------------------------- workspace */
+#{$desk}[data-ui-workspace="cards"] [data-page-route="Workspaces"] {
+	--ui-workspace-gap: 16px;
+	.widget {
+		box-shadow: var(--ui-shadow-md);
+		border-radius: calc(var(--ui-card-radius) + 2px);
+	}
+	.widget.shortcut-widget-box {
+		min-height: 64px;
+		padding: var(--ui-gap-lg) var(--ui-gap-xl);
+		.widget-label .widget-title {
+			font-size: var(--ui-font-size-lg);
+			font-weight: var(--ui-heading-weight);
+		}
+	}
+	.widget.links-widget-box,
+	.widget.number-widget-box {
+		padding: var(--ui-gap-lg) var(--ui-gap-xl);
+	}
+}
+
+#{$desk}[data-ui-workspace="compact"] [data-page-route="Workspaces"] {
+	--ui-workspace-gap: 8px;
+	.widget.shortcut-widget-box {
+		min-height: 36px;
+		padding: var(--ui-gap-xs) var(--ui-gap-md);
+		.widget-label .widget-title {
+			font-size: var(--ui-font-size-sm);
+		}
+	}
+	.widget.links-widget-box,
+	.widget.number-widget-box {
+		padding: var(--ui-gap-sm) var(--ui-gap-md);
+	}
+	.widget.links-widget-box .link-item {
+		padding: 1px var(--ui-gap-xs);
+		font-size: var(--ui-font-size-xs);
+		&:first-child {
+			margin-top: var(--ui-gap-sm);
+		}
+	}
+	.widget.number-widget-box {
+		min-height: 64px;
+	}
+	.layout-main .codex-editor .codex-editor__redactor .ce-block .ce-header {
+		.h4,
+		h4 {
+			margin-top: var(--ui-gap-xs);
+			font-size: var(--ui-font-size-sm);
+		}
+	}
+}
+
+#{$desk}[data-ui-workspace="comfortable"] [data-page-route="Workspaces"] {
+	--ui-workspace-gap: 20px;
+	.widget.shortcut-widget-box {
+		min-height: 56px;
+		padding: var(--ui-gap-lg) var(--ui-gap-xl);
+	}
+	.widget.links-widget-box,
+	.widget.number-widget-box {
+		padding: var(--ui-gap-lg) var(--ui-gap-xl);
+	}
+	.widget.links-widget-box .link-item {
+		padding: 5px var(--ui-gap-xs);
+	}
+	.layout-main .codex-editor .codex-editor__redactor .ce-block .ce-header {
+		.h4,
+		h4 {
+			margin-top: var(--ui-gap-xl);
+		}
+	}
+}
+
+/* ---------------------------------------------------------- forms */
+/* Field sizes are set on the form only, so dialogs and filter bars keep the
+   density setting. */
+#{$desk}[data-ui-form="compact"] .std-form-layout {
+	--input-height: 26px;
+	--ui-control-height: 26px;
+	.form-section .section-head {
+		padding-top: var(--ui-gap-sm);
+		padding-bottom: var(--ui-gap-sm);
+	}
+	.form-section .section-body {
+		padding-top: var(--ui-gap-xs);
+	}
+	.frappe-control,
+	.form-group {
+		margin-bottom: var(--ui-gap-sm);
+	}
+	.frappe-control .control-label {
+		margin-bottom: 2px;
+		font-size: var(--ui-font-size-xs);
+	}
+	.form-control,
+	.control-value.like-disabled-input {
+		font-size: var(--ui-font-size-sm);
+	}
+	.form-tabs-list .form-tabs .nav-item .nav-link {
+		padding-top: 6px;
+		padding-bottom: 5px;
+	}
+}
+
+#{$desk}[data-ui-form="comfortable"] .std-form-layout {
+	--input-height: 34px;
+	--ui-control-height: 34px;
+	.form-section .section-head {
+		padding-top: var(--ui-gap-xl);
+		padding-bottom: var(--ui-gap-lg);
+	}
+	.form-section .section-body {
+		padding-bottom: var(--ui-gap-md);
+	}
+	.frappe-control,
+	.form-group {
+		margin-bottom: var(--ui-gap-lg);
+	}
+	.frappe-control .control-label {
+		margin-bottom: var(--ui-gap-sm);
+	}
+}
+
+/* ---------------------------------------------------------- lists and tables */
+/* Lists use --ui-row-height (Phase 2); the sticky right cell's native 9 px
+   padding also sets the row height, so it follows the format here. Report
+   datatables get matching cell padding. "Standard" keeps Phase 2 rows. */
+#{$desk}[data-ui-list="compact"] {
+	.frappe-list {
+		--ui-row-height: 28px;
+		--list-row-height: 28px;
+		.list-row,
+		.list-row-col {
+			font-size: var(--ui-font-size-sm);
+		}
+		.list-row .level-right {
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
+	}
+	.datatable .dt-cell__content {
+		padding: 3px 8px;
+	}
+}
+
+#{$desk}[data-ui-list="comfortable"] {
+	.frappe-list {
+		--ui-row-height: 46px;
+		--list-row-height: 46px;
+		.list-row .level-right {
+			padding-top: 13px;
+			padding-bottom: 13px;
+		}
+	}
+	.datatable .dt-cell__content {
+		padding: 10px 12px;
+	}
+}
+
+/* ---------------------------------------------------------- content width */
+/* standard: Phase 2 (page full width, readable form and workspace width).
+   contained (1440 px) is in layout/desk.scss. */
+#{$desk}[data-ui-width="narrow"] {
+	.page-head > .container,
+	.page-body.container {
+		max-width: calc(1120px + 2 * var(--ui-page-padding));
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+#{$desk}[data-ui-width="full"] {
+	/* Forms (and other users of Frappe's readable width) use the full card. */
+	--page-max-width: 100%;
+	[data-page-route="Workspaces"] .layout-main {
+		max-width: none;
+	}
+}
+
+/* ---------------------------------------------------------- cards */
+/* Minimal: content areas lose their border and shadow. Workspace widgets keep
+   a hairline border so shortcuts and link groups stay distinguishable. */
+#{$desk}[data-ui-cards="minimal"] {
+	.layout-main-section,
+	.std-form-layout > .form-layout,
+	.form-footer,
+	.layout-side-section .form-sidebar {
+		border-color: transparent;
+		box-shadow: none;
+	}
+	[data-page-route="Workspaces"] .widget {
+		box-shadow: none;
+	}
+}
+
+/* ---------------------------------------------------------- page background */
+/* Plain: the page uses the card colour (native ERPNext). Cards keep their
+   border when "Bordered" is chosen, so content stays separated. */
+#{$desk}[data-ui-canvas="plain"] {
+	background-color: var(--ui-surface);
+	body,
+	.page-container,
+	.main-section {
+		background-color: var(--ui-surface);
+	}
+}

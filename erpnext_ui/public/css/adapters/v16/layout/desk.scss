@@ -1,0 +1,75 @@
+/* Module A: page structure.
+ *
+ * v16 paints both the page and the components on it with --bg-color (the
+ * awesomplete list, sticky list cells, the datatable, timeline dots, popover
+ * headers). Re-pointing --bg-color at the tinted page colour would tint all
+ * of those, so --bg-color stays the surface (adapters/v16.scss) and the page
+ * colour is applied here to the four page-level containers only. Content
+ * areas then sit on it as cards. */
+#{$desk} {
+	--sidebar-width: var(--ui-sidebar-width);
+	background-color: var(--ui-background);
+
+	body,
+	.page-container,
+	.main-section {
+		background-color: var(--ui-background);
+	}
+
+	/* Gutters: page head and body share one horizontal padding, so titles line
+	   up with the edge of the content card below them. */
+	.page-head > .container,
+	.page-body.container {
+		padding-left: var(--ui-page-padding);
+		padding-right: var(--ui-page-padding);
+	}
+	.page-head .page-head-content,
+	.page-body.container .layout-main {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.page-body.container {
+		padding-top: var(--ui-gap-lg);
+		padding-bottom: var(--ui-section-spacing);
+	}
+	.layout-main-section-wrapper,
+	.layout-side-section {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	/* The content card. Every Desk page (lists, forms, reports, custom pages)
+	   renders into .layout-main-section; workspaces are excluded because
+	   their widgets are cards already. */
+	.layout-main-section {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius);
+		box-shadow: var(--ui-shadow-sm);
+	}
+	body[data-route^="Workspaces"] .layout-main-section,
+	.layout-main-section.ui-no-card {
+		background-color: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+
+	/* Forms: the card is the form itself; the sidebar column keeps the page
+	   colour. */
+	body[data-route^="Form/"] .layout-main-section {
+		background-color: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+
+	/* Optional width limit for very wide screens ("Contained"). */
+	&[data-ui-width="contained"] {
+		.page-head > .container,
+		.page-body.container {
+			max-width: calc(var(--ui-content-max-width) + 2 * var(--ui-page-padding));
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}

@@ -1,0 +1,25 @@
+/* Layout tokens, consumed by the Desk layout layer (adapters/v16/).
+   Breakpoints are documented here for JS and for media queries (custom
+   properties cannot be used inside @media). */
+:root {
+	--ui-sidebar-width: 240px;
+	--ui-sidebar-width-compact: 56px;
+	--ui-navbar-height: 48px;
+	--ui-page-padding: 20px;
+	--ui-section-spacing: 24px;
+	--ui-content-max-width: 1440px;
+	--ui-page-head-height: var(--ui-navbar-height);
+	--ui-card-padding: 16px;
+	--ui-sidebar-item-height: calc(var(--ui-control-height) + 2px);
+
+	--ui-gap-xs: 4px;
+	--ui-gap-sm: 8px;
+	--ui-gap-md: 12px;
+	--ui-gap-lg: 16px;
+	--ui-gap-xl: 24px;
+
+	--ui-breakpoint-sm: 576px;
+	--ui-breakpoint-md: 768px;
+	--ui-breakpoint-lg: 992px;
+	--ui-breakpoint-xl: 1200px;
+}

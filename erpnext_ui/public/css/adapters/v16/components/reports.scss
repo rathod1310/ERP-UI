@@ -1,0 +1,122 @@
+/* Module G: query/script reports, report view and other datatables.
+ *
+ * Presentation only: report filters, queries, calculations, totals, exports
+ * and print are native. Numbers use tabular figures so columns line up. */
+#{$desk} {
+	/* ---- Filter area */
+	.layout-main-section > .page-form .frappe-control {
+		margin-bottom: var(--ui-gap-xs);
+	}
+	.page-form .frappe-control .form-control.input-xs,
+	.page-form .frappe-control .input-xs {
+		height: var(--ui-input-height);
+	}
+
+	/* ---- Datatable */
+	.datatable {
+		--dt-cell-bg: var(--ui-surface);
+		--dt-header-cell-bg: var(--ui-surface-muted);
+		--dt-border-color: var(--ui-border);
+		--dt-selection-highlight-color: var(--ui-selected);
+		--dt-light-bg: var(--ui-hover);
+		--dt-text-color: var(--ui-text-secondary);
+		background-color: var(--ui-surface);
+		font-variant-numeric: tabular-nums;
+
+		.dt-cell {
+			color: var(--ui-text) !important; /* native rule uses !important */
+		}
+		.dt-cell--header .dt-cell__content {
+			font-size: var(--ui-font-size-xs);
+			font-weight: var(--ui-font-weight-semibold);
+			color: var(--ui-text-secondary);
+		}
+		.dt-cell--header,
+		.dt-cell--header .dt-cell__content {
+			background-color: var(--ui-surface-muted);
+		}
+		.dt-cell--col-0 .dt-cell__content {
+			color: var(--ui-text-subtle);
+		}
+		.dt-row:not(.dt-row-totalRow):hover .dt-cell {
+			background-color: var(--ui-hover);
+		}
+		.dt-row-totalRow .dt-cell,
+		.dt-footer .dt-cell {
+			background-color: var(--ui-surface-muted);
+			font-weight: var(--ui-font-weight-semibold);
+		}
+		.dt-tree-node .dt-tree-node__toggle {
+			color: var(--ui-text-subtle);
+		}
+
+		/* Inline filters and editing: borderless, as natively. */
+		.frappe-control .form-control,
+		.dt-filter {
+			border: 0;
+			border-radius: 0;
+			box-shadow: none;
+			background-color: transparent;
+		}
+		.dt-filter {
+			background-color: var(--ui-control-bg);
+			border-radius: var(--ui-radius-sm);
+			color: var(--ui-text);
+			&:focus {
+				box-shadow: inset 0 0 0 1px var(--ui-focus);
+			}
+		}
+		.dt-dropdown__list {
+			background-color: var(--ui-surface-elevated);
+			border: var(--ui-border-width) solid var(--ui-border);
+			border-radius: var(--ui-radius-md);
+			box-shadow: var(--ui-shadow-md);
+		}
+		.dt-dropdown__list-item:hover {
+			background-color: var(--ui-hover);
+		}
+	}
+	.report-wrapper {
+		padding: var(--ui-gap-sm) var(--ui-gap-md) 0;
+		.datatable {
+			border: var(--ui-border-width) solid var(--ui-border);
+			border-radius: var(--ui-radius-md);
+			overflow: hidden;
+			margin-left: 0;
+		}
+	}
+
+	/* ---- Summary figures above the table */
+	.report-summary {
+		background-color: var(--ui-surface);
+		border-bottom: var(--ui-border-width) solid var(--ui-border);
+		.summary-item {
+			.summary-label {
+				color: var(--ui-text-secondary);
+				font-size: var(--ui-font-size-sm);
+			}
+			.summary-value {
+				color: var(--ui-text);
+				font-weight: var(--ui-font-weight-semibold);
+				font-variant-numeric: tabular-nums;
+			}
+		}
+		.summary-separator {
+			color: var(--ui-text-subtle);
+		}
+	}
+
+	/* ---- Chart and footer */
+	.layout-main-section .chart-wrapper {
+		border-bottom: var(--ui-border-width) solid var(--ui-border);
+	}
+	.report-footer {
+		color: var(--ui-text-subtle);
+		font-size: var(--ui-font-size-xs);
+		padding: var(--ui-gap-sm) var(--ui-gap-md);
+	}
+	.report-wrapper .no-report-data,
+	.report-wrapper .msg-box {
+		color: var(--ui-text-subtle);
+	}
+}

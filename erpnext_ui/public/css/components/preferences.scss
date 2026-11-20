@@ -1,0 +1,534 @@
+/*
+ * Theme gallery, segmented controls and the preview banner used by the
+ * "Appearance & Theme" page and UI Experience Settings. These elements carry
+ * their own classes, so they are styled whether or not the engine is active
+ * (falling back to Frappe's variables).
+ */
+.eui-section {
+	margin-bottom: var(--ui-section-spacing, 24px);
+}
+
+.eui-section-title {
+	font-size: var(--ui-font-size-base, 14px);
+	font-weight: var(--ui-font-weight-semibold, 600);
+	color: var(--text-color);
+	margin: 0 0 4px;
+}
+
+.eui-section-help {
+	font-size: var(--ui-font-size-sm, 13px);
+	color: var(--text-muted);
+	margin: 0 0 12px;
+}
+
+.eui-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: var(--ui-gap-lg, 16px);
+}
+
+.eui-theme-card {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	padding: 0;
+	background: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	color: var(--text-color);
+	cursor: pointer;
+	overflow: hidden;
+	transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.eui-theme-card:hover {
+	border-color: var(--dark-border-color);
+}
+
+.eui-theme-card:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-default);
+}
+
+.eui-theme-card[aria-pressed="true"] {
+	border-color: var(--primary);
+	box-shadow: 0 0 0 1px var(--primary);
+}
+
+.eui-theme-card[disabled] {
+	cursor: default;
+	opacity: 0.75;
+}
+
+/* A miniature of the theme, drawn from its own tokens (set inline). */
+.eui-theme-sample {
+	display: grid;
+	grid-template-columns: 28% 1fr;
+	height: 88px;
+	background: var(--s-background);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.eui-theme-sample-sidebar {
+	background: var(--s-sidebar);
+	border-right: 1px solid var(--s-border);
+	padding: 10px 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.eui-theme-sample-sidebar span {
+	display: block;
+	height: 5px;
+	border-radius: 3px;
+	background: var(--s-sidebar-text, var(--s-muted));
+	opacity: 0.45;
+}
+
+.eui-theme-sample-sidebar span:first-child {
+	background: var(--s-sidebar-active, var(--s-primary));
+	opacity: 1;
+	width: 70%;
+	height: 8px;
+}
+
+.eui-theme-sample-main {
+	padding: 10px;
+}
+
+.eui-theme-sample-card {
+	background: var(--s-surface);
+	border: 1px solid var(--s-border);
+	border-radius: 4px;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.eui-theme-sample-line {
+	height: 5px;
+	border-radius: 3px;
+	background: var(--s-text);
+	opacity: 0.8;
+	width: 60%;
+}
+
+.eui-theme-sample-line.short {
+	background: var(--s-muted);
+	opacity: 0.6;
+	width: 40%;
+}
+
+.eui-theme-sample-button {
+	align-self: flex-end;
+	width: 34px;
+	height: 10px;
+	border-radius: 3px;
+	background: var(--s-primary);
+}
+
+.eui-theme-body {
+	padding: 10px 12px 12px;
+}
+
+.eui-theme-name {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	font-weight: var(--ui-font-weight-semibold, 600);
+	font-size: var(--ui-font-size-base, 14px);
+}
+
+.eui-theme-desc {
+	font-size: var(--ui-font-size-xs, 12px);
+	color: var(--text-muted);
+	margin-top: 2px;
+	line-height: 1.4;
+	min-height: 2.8em;
+}
+
+.eui-swatches {
+	display: flex;
+	gap: 4px;
+	margin-top: 8px;
+}
+
+.eui-swatch {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border: 1px solid var(--border-color);
+}
+
+.eui-badges {
+	display: flex;
+	gap: 4px;
+	flex-wrap: wrap;
+}
+
+.eui-badge {
+	font-size: 11px;
+	font-weight: var(--ui-font-weight-medium, 500);
+	padding: 1px 6px;
+	border-radius: 9px;
+	background: var(--subtle-fg);
+	color: var(--text-muted);
+	white-space: nowrap;
+}
+
+.eui-badge.is-current {
+	background: var(--ui-primary-soft, var(--bg-blue));
+	color: var(--primary);
+}
+
+/* Segmented control (appearance, density, font) */
+.eui-segmented {
+	display: inline-flex;
+	flex-wrap: wrap;
+	padding: 2px;
+	gap: 2px;
+	background: var(--control-bg);
+	border-radius: var(--border-radius);
+}
+
+.eui-segmented button {
+	border: 0;
+	background: transparent;
+	color: var(--text-muted);
+	font-size: var(--ui-font-size-sm, 13px);
+	padding: 4px 14px;
+	min-height: var(--btn-height, 28px);
+	border-radius: calc(var(--border-radius) - 2px);
+	cursor: pointer;
+}
+
+.eui-segmented button[aria-pressed="true"] {
+	background: var(--card-bg);
+	color: var(--text-color);
+	font-weight: var(--ui-font-weight-medium, 500);
+	box-shadow: var(--shadow-sm);
+}
+
+.eui-segmented button:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-default);
+}
+
+.eui-segmented button[disabled] {
+	cursor: default;
+	opacity: 0.6;
+}
+
+/* Preview banner */
+.eui-preview-banner {
+	position: sticky;
+	top: var(--navbar-height, 48px);
+	z-index: 20;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px 16px;
+	margin-bottom: 16px;
+	padding: 10px 14px;
+	border: 1px solid var(--ui-info, var(--blue-500));
+	border-radius: var(--border-radius);
+	background: var(--ui-info-soft, var(--bg-blue));
+	color: var(--text-color);
+	font-size: var(--ui-font-size-sm, 13px);
+}
+
+.eui-preview-banner[hidden] {
+	display: none;
+}
+
+.eui-preview-banner .eui-preview-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.eui-notice {
+	padding: 10px 14px;
+	border-radius: var(--border-radius);
+	background: var(--subtle-fg);
+	color: var(--text-muted);
+	font-size: var(--ui-font-size-sm, 13px);
+	margin-bottom: 16px;
+}
+
+.eui-status-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 8px 24px;
+	font-size: var(--ui-font-size-sm, 13px);
+}
+
+.eui-status-grid dt {
+	color: var(--text-muted);
+	font-weight: normal;
+}
+
+.eui-status-grid dd {
+	margin: 0;
+	color: var(--text-color);
+	font-weight: var(--ui-font-weight-medium, 500);
+}
+
+.eui-preferences-page {
+	max-width: 1120px;
+	padding: var(--ui-page-padding, 20px);
+}
+
+@media (max-width: 576px) {
+	.eui-gallery {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.eui-theme-card {
+		transition: none;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Phase 3: layout customization (option cards, layout wireframes, section
+ * navigation and the preview bar). Colours come from the active theme, with
+ * Frappe's variables as fallbacks.
+ * ------------------------------------------------------------------------- */
+
+.eui-options {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: var(--ui-gap-sm, 8px);
+}
+
+.eui-option {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	text-align: left;
+	padding: 10px 12px;
+	background: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	color: var(--text-color);
+	cursor: pointer;
+	transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.eui-option:hover {
+	border-color: var(--dark-border-color);
+}
+
+.eui-option:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-default);
+}
+
+.eui-option[aria-pressed="true"] {
+	border-color: var(--primary);
+	box-shadow: 0 0 0 1px var(--primary);
+}
+
+.eui-option[disabled] {
+	cursor: default;
+	opacity: 0.7;
+}
+
+.eui-option-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 6px;
+	font-weight: var(--ui-font-weight-semibold, 600);
+	font-size: var(--ui-font-size-sm, 13px);
+}
+
+.eui-option-desc {
+	font-size: var(--ui-font-size-xs, 12px);
+	color: var(--ui-text-subtle, var(--text-muted));
+	line-height: 1.4;
+}
+
+/* Wireframe of a layout preset, in the current theme's colours. */
+.eui-layout-sample {
+	--ls-bg: var(--ui-background, var(--bg-color));
+	--ls-sidebar-w: 26%;
+	display: grid;
+	grid-template-columns: var(--ls-sidebar-w) 1fr;
+	height: 104px;
+	background: var(--ls-bg);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.eui-layout-sample[data-canvas="plain"] {
+	--ls-bg: var(--ui-surface, var(--fg-color));
+}
+
+.eui-layout-sample[data-nav="compact"] {
+	--ls-sidebar-w: 19%;
+}
+
+.eui-layout-sample[data-nav="collapsed"] {
+	--ls-sidebar-w: 9%;
+}
+
+.eui-ls-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 10px 6px;
+	background: var(--ui-sidebar-bg, var(--subtle-fg));
+	border-right: 1px solid var(--border-color);
+}
+
+.eui-ls-sidebar span {
+	height: 5px;
+	border-radius: 2px;
+	background: var(--ui-border-strong, var(--dark-border-color));
+}
+
+.eui-ls-sidebar span:first-child {
+	background: var(--ui-primary, var(--primary));
+}
+
+.eui-ls-main {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 8px 10px;
+	min-width: 0;
+}
+
+.eui-layout-sample[data-width="contained"] .eui-ls-main,
+.eui-layout-sample[data-width="narrow"] .eui-ls-main {
+	padding-left: 16%;
+	padding-right: 16%;
+}
+
+.eui-ls-head {
+	height: 6px;
+	width: 40%;
+	border-radius: 2px;
+	background: var(--ui-text-muted, var(--text-muted));
+}
+
+.eui-ls-card {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 4px 6px;
+	background: var(--ui-surface, var(--fg-color));
+	border: 1px solid var(--ui-border-strong, var(--border-color));
+	border-radius: 4px;
+	box-shadow: var(--ui-shadow-sm, none);
+	overflow: hidden;
+}
+
+.eui-layout-sample[data-cards="minimal"] .eui-ls-card {
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.eui-ls-row {
+	flex: 0 0 9px;
+	border-bottom: 1px solid var(--ui-border, var(--border-color));
+}
+
+.eui-layout-sample[data-list="compact"] .eui-ls-row {
+	flex-basis: 6px;
+}
+
+.eui-layout-sample[data-list="comfortable"] .eui-ls-row {
+	flex-basis: 13px;
+}
+
+/* Section navigation on the Appearance & Theme page. */
+.eui-section-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 6px;
+	margin-bottom: var(--ui-gap-lg, 16px);
+	padding-bottom: var(--ui-gap-md, 12px);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.eui-section-nav a {
+	padding: 3px 10px;
+	border-radius: 999px;
+	font-size: var(--ui-font-size-sm, 13px);
+	color: var(--ui-text-secondary, var(--text-muted));
+	background: var(--ui-surface-muted, var(--subtle-fg));
+	text-decoration: none;
+}
+
+.eui-section-nav a:hover {
+	color: var(--ui-text, var(--text-color));
+}
+
+.eui-subsection + .eui-subsection {
+	margin-top: var(--ui-gap-lg, 16px);
+}
+
+.eui-subsection-title {
+	font-size: var(--ui-font-size-sm, 13px);
+	font-weight: var(--ui-font-weight-medium, 500);
+	color: var(--ui-text-secondary, var(--text-muted));
+	margin: 0 0 6px;
+}
+
+.eui-locked {
+	font-size: var(--ui-font-size-xs, 12px);
+	color: var(--ui-text-subtle, var(--text-muted));
+	margin: 0 0 8px;
+}
+
+/* Preview bar: visible on every route while a preview is unsaved. */
+.eui-preview-bar {
+	position: fixed;
+	left: 50%;
+	bottom: 16px;
+	transform: translateX(-50%);
+	z-index: 1030;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	max-width: calc(100vw - 32px);
+	padding: 8px 10px 8px 14px;
+	background: var(--ui-surface-elevated, var(--modal-bg));
+	color: var(--ui-text, var(--text-color));
+	border: 1px solid var(--ui-border-strong, var(--border-color));
+	border-left: 3px solid var(--ui-primary, var(--primary));
+	border-radius: var(--ui-radius-lg, 8px);
+	box-shadow: var(--ui-shadow-lg, var(--shadow-lg));
+	font-size: var(--ui-font-size-sm, 13px);
+}
+
+.eui-preview-bar[hidden] {
+	display: none;
+}
+
+.eui-preview-bar-actions {
+	display: flex;
+	flex: none;
+	gap: 6px;
+}
+
+.eui-preview-bar-actions [hidden] {
+	display: none;
+}
+
+@media (max-width: 576px) {
+	.eui-preview-bar {
+		flex-direction: column;
+		align-items: stretch;
+		bottom: 8px;
+	}
+	.eui-preview-bar-actions {
+		justify-content: flex-end;
+	}
+}

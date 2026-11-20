@@ -1,0 +1,390 @@
+{
+ "actions": [],
+ "creation": "2026-11-02 12:00:00.000000",
+ "description": "Site-wide configuration of the ERPNext UI theme engine.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "status_html",
+  "general_section",
+  "enabled",
+  "allow_user_selection",
+  "column_break_general",
+  "debug_logging",
+  "experience_section",
+  "default_experience",
+  "allow_user_experience",
+  "column_break_experience",
+  "allowed_experiences",
+  "theme_section",
+  "default_appearance",
+  "default_light_theme",
+  "default_dark_theme",
+  "column_break_theme",
+  "default_density",
+  "default_font",
+  "accent_color",
+  "backdrop_section",
+  "enable_backdrops",
+  "column_break_backdrop",
+  "backdrop_through_panels",
+  "layout_section",
+  "desk_layout",
+  "column_break_layout",
+  "default_layout_preset",
+  "default_navigation",
+  "default_workspace_format",
+  "column_break_layout_defaults",
+  "default_form_format",
+  "default_list_format",
+  "content_width",
+  "default_card_style",
+  "default_page_background",
+  "user_customization_section",
+  "allow_layout_preset",
+  "allow_navigation",
+  "column_break_user_customization",
+  "allow_workspace_format",
+  "allow_form_format",
+  "column_break_user_customization_2",
+  "allow_list_format",
+  "allow_content_options",
+  "gallery_section",
+  "gallery_html"
+ ],
+ "fields": [
+  {
+   "fieldname": "experience_section",
+   "fieldtype": "Section Break",
+   "label": "Experiences"
+  },
+  {
+   "description": "Used by everyone who has not chosen an experience of their own.",
+   "fieldname": "default_experience",
+   "fieldtype": "Link",
+   "label": "Default Experience",
+   "options": "UI Experience"
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_user_experience",
+   "fieldtype": "Check",
+   "label": "Allow Users to Choose Their Experience"
+  },
+  {
+   "fieldname": "column_break_experience",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Leave empty to offer every enabled experience. The default experience is always available.",
+   "fieldname": "allowed_experiences",
+   "fieldtype": "Table MultiSelect",
+   "label": "Experiences Users May Choose",
+   "options": "UI Experience Allowed"
+  },
+  {
+   "fieldname": "status_html",
+   "fieldtype": "HTML",
+   "label": "Status"
+  },
+  {
+   "fieldname": "general_section",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "default": "1",
+   "description": "When off, every user sees the native ERPNext interface.",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable UI Experience"
+  },
+  {
+   "default": "1",
+   "description": "When off, everyone uses the defaults below. Light/Dark/Automatic remains each user's own choice (a standard ERPNext feature).",
+   "fieldname": "allow_user_selection",
+   "fieldtype": "Check",
+   "label": "Allow Users to Adjust Theme, Density and Font"
+  },
+  {
+   "fieldname": "column_break_general",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "debug_logging",
+   "fieldtype": "Check",
+   "label": "Log Theme Engine Diagnostics in the Browser Console"
+  },
+  {
+   "description": "Used when an experience's own theme is disabled or missing.",
+   "fieldname": "theme_section",
+   "fieldtype": "Section Break",
+   "label": "Fallback Themes"
+  },
+  {
+   "default": "Light",
+   "description": "Used for users who have not chosen Light, Dark or Automatic themselves.",
+   "fieldname": "default_appearance",
+   "fieldtype": "Select",
+   "label": "Default Appearance",
+   "options": "Light\nDark\nAutomatic",
+   "reqd": 1
+  },
+  {
+   "fieldname": "default_light_theme",
+   "fieldtype": "Link",
+   "label": "Default Light Theme",
+   "options": "UI Theme",
+   "reqd": 1
+  },
+  {
+   "fieldname": "default_dark_theme",
+   "fieldtype": "Link",
+   "label": "Default Dark Theme",
+   "options": "UI Theme",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_theme",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Comfortable",
+   "fieldname": "default_density",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Density",
+   "options": "Compact\nComfortable\nSpacious",
+   "reqd": 1
+  },
+  {
+   "default": "Inter",
+   "fieldname": "default_font",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Font",
+   "options": "Inter\nSystem UI\nHumanist Sans",
+   "reqd": 1
+  },
+  {
+   "description": "Optional. Replaces the primary colour of every theme. It is adjusted automatically where needed to keep text readable.",
+   "fieldname": "accent_color",
+   "fieldtype": "Color",
+   "label": "Accent Colour Override"
+  },
+  {
+   "description": "Each theme names a restrained backdrop (CSS or a small inline SVG, no image files). Cards always stay opaque.",
+   "fieldname": "backdrop_section",
+   "fieldtype": "Section Break",
+   "label": "Backdrops"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_backdrops",
+   "fieldtype": "Check",
+   "label": "Enable Backdrops"
+  },
+  {
+   "fieldname": "column_break_backdrop",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "depends_on": "enable_backdrops",
+   "description": "Makes the sidebar and page header slightly translucent so the backdrop reads through them.",
+   "fieldname": "backdrop_through_panels",
+   "fieldtype": "Check",
+   "label": "Show Backdrop Through Sidebar and Header"
+  },
+  {
+   "fieldname": "layout_section",
+   "fieldtype": "Section Break",
+   "label": "Desk Layout"
+  },
+  {
+   "default": "1",
+   "description": "Page background, cards, sidebar, page headers, workspace, form, list and report presentation, and the layout options below. When off, only theme colours, density and font apply.",
+   "fieldname": "desk_layout",
+   "fieldtype": "Check",
+   "label": "Enhanced Desk Layout"
+  },
+  {
+   "fieldname": "column_break_layout",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Modern",
+   "depends_on": "desk_layout",
+   "description": "The layout everyone starts with. Modern is the Phase 2 Desk.",
+   "fieldname": "default_layout_preset",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Layout Preset",
+   "options": "Classic\nModern\nCompact\nWide"
+  },
+  {
+   "depends_on": "desk_layout",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "default_navigation",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Navigation",
+   "options": "\nStandard\nCompact\nCollapsed"
+  },
+  {
+   "depends_on": "desk_layout",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "default_workspace_format",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Workspace Format",
+   "options": "\nStandard\nCards\nCompact\nComfortable"
+  },
+  {
+   "fieldname": "column_break_layout_defaults",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "desk_layout",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "default_form_format",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Form Format",
+   "options": "\nStandard\nCompact\nComfortable"
+  },
+  {
+   "depends_on": "desk_layout",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "default_list_format",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default List Format",
+   "options": "\nStandard\nCompact\nComfortable"
+  },
+  {
+   "default": "",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "content_width",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Content Width",
+   "options": "\nStandard\nFull Width\nContained\nNarrow"
+  },
+  {
+   "depends_on": "desk_layout",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "default_card_style",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Card Style",
+   "options": "\nBordered\nMinimal"
+  },
+  {
+   "depends_on": "desk_layout",
+   "description": "Blank: follow the default layout preset.",
+   "fieldname": "default_page_background",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Default Page Background",
+   "options": "\nTinted\nPlain"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "desk_layout",
+   "description": "Users adjust an experience for themselves in Appearance \u2192 Advanced. The experience itself is never changed.",
+   "fieldname": "user_customization_section",
+   "fieldtype": "Section Break",
+   "label": "What Users May Adjust"
+  },
+  {
+   "default": "1",
+   "depends_on": "desk_layout",
+   "fieldname": "allow_layout_preset",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Layout Presets"
+  },
+  {
+   "default": "1",
+   "depends_on": "desk_layout",
+   "fieldname": "allow_navigation",
+   "fieldtype": "Check",
+   "label": "Navigation"
+  },
+  {
+   "fieldname": "column_break_user_customization",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "depends_on": "desk_layout",
+   "fieldname": "allow_workspace_format",
+   "fieldtype": "Check",
+   "label": "Workspace"
+  },
+  {
+   "default": "1",
+   "depends_on": "desk_layout",
+   "fieldname": "allow_form_format",
+   "fieldtype": "Check",
+   "label": "Forms"
+  },
+  {
+   "fieldname": "column_break_user_customization_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "depends_on": "desk_layout",
+   "fieldname": "allow_list_format",
+   "fieldtype": "Check",
+   "label": "Lists and Tables"
+  },
+  {
+   "default": "1",
+   "depends_on": "desk_layout",
+   "fieldname": "allow_content_options",
+   "fieldtype": "Check",
+   "label": "Content and Cards"
+  },
+  {
+   "fieldname": "gallery_section",
+   "fieldtype": "Section Break",
+   "label": "Theme Gallery"
+  },
+  {
+   "fieldname": "gallery_html",
+   "fieldtype": "HTML",
+   "label": "Theme Gallery"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-11-04 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ERPNext UI",
+ "name": "UI Experience Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

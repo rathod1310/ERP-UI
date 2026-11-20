@@ -1,0 +1,23 @@
+/* Component tokens. Radii derive from the active theme's --ui-radius. */
+:root {
+	--ui-radius: 6px;
+	--ui-radius-sm: max(2px, calc(var(--ui-radius) - 2px));
+	--ui-radius-md: var(--ui-radius);
+	--ui-radius-lg: calc(var(--ui-radius) + 2px);
+
+	--ui-card-radius: var(--ui-radius-lg);
+	--ui-input-radius: var(--ui-radius-md);
+	--ui-dialog-radius: calc(var(--ui-radius) + 4px);
+	--ui-border-width: 1px;
+
+	--ui-icon-size-sm: 14px;
+	--ui-icon-size-md: 16px;
+	--ui-icon-size-lg: 20px;
+
+	--ui-button-height: var(--ui-control-height);
+	--ui-button-height-sm: var(--ui-control-height-sm);
+	--ui-input-height: var(--ui-control-height);
+	--ui-table-row-height: var(--ui-row-height);
+	--ui-table-cell-padding-y: var(--ui-cell-padding-y);
+	--ui-table-cell-padding-x: var(--ui-cell-padding-x);
+}

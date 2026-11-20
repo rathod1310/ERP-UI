@@ -1,0 +1,129 @@
+/* Module F: list views.
+ *
+ * Presentation only: filters, saved filters, sorting, selection, bulk
+ * actions, paging, list settings and list scripts are native. Row height
+ * follows the density token (Compact / Comfortable / Spacious). Wide lists
+ * scroll sideways inside .result-container, as natively. */
+#{$desk} {
+	--list-row-height: var(--ui-row-height);
+
+	/* ---- Filter bar (standard filters) and filter/sort controls */
+	.layout-main-list > .page-form,
+	.layout-main-section > .page-form {
+		background-color: transparent;
+		border-bottom: var(--ui-border-width) solid var(--ui-border);
+		padding: var(--ui-gap-sm) var(--ui-gap-md);
+		gap: 0;
+	}
+	.page-form .filter-section,
+	.page-form .sort-selector {
+		gap: 0;
+	}
+	.filter-selector .filter-button.btn-primary-light,
+	.filter-selector .btn.filter-x-button {
+		background-color: var(--ui-selected);
+		color: var(--ui-primary-text);
+		box-shadow: none;
+	}
+
+	/* ---- Table */
+	.frappe-list {
+		margin: 0;
+		.result-container {
+			padding: 0 var(--ui-gap-xs);
+		}
+	}
+	.list-row-container {
+		padding-inline: var(--ui-gap-sm);
+		border-radius: 0;
+		&:hover,
+		&:hover .level-right {
+			background-color: var(--ui-hover);
+		}
+	}
+	.list-row {
+		border-bottom-color: var(--ui-border);
+		color: var(--ui-text);
+		.level-left {
+			padding: max(0px, calc((var(--ui-row-height) - 30px) / 2)) 0;
+		}
+		.level-right {
+			background-color: var(--ui-surface);
+			border-left: var(--ui-border-width) solid var(--ui-border);
+			color: var(--ui-text-subtle);
+		}
+		&:hover:not(.list-row-head) .level-right {
+			box-shadow: none;
+		}
+		.list-subject a,
+		.list-subject .bold a {
+			color: var(--ui-text);
+			font-weight: var(--ui-font-weight-medium);
+		}
+		.list-subject a:hover {
+			color: var(--ui-primary-text);
+		}
+		.list-row-col {
+			font-variant-numeric: tabular-nums;
+		}
+		.filterable:hover {
+			color: var(--ui-primary-text);
+		}
+	}
+	.list-row-container:has(.list-row-checkbox:checked) {
+		&,
+		.level-right {
+			background-color: var(--ui-selected);
+		}
+	}
+
+	/* Header row: sticky (native), muted, smaller type. */
+	.list-row-head {
+		background-color: var(--ui-surface-muted);
+		border-radius: var(--ui-radius-md);
+		border-bottom: var(--ui-border-width) solid var(--ui-border);
+		color: var(--ui-text-secondary);
+		.list-row-col,
+		.level-item,
+		.list-subject {
+			font-size: var(--ui-font-size-xs);
+			font-weight: var(--ui-font-weight-semibold);
+			color: var(--ui-text-secondary);
+		}
+		.level-right {
+			background-color: var(--ui-surface-muted);
+			border-left-color: transparent;
+		}
+		.list-count {
+			color: var(--ui-text-subtle);
+			font-weight: var(--ui-font-weight-regular);
+		}
+	}
+	.frappe-list .result-container .result .list-row-container:first-child {
+		background-color: var(--ui-surface);
+		padding-top: var(--ui-gap-sm);
+	}
+
+	/* ---- Paging */
+	.list-paging-area {
+		border-top: var(--ui-border-width) solid var(--ui-border);
+		padding: var(--ui-gap-sm) var(--ui-gap-md);
+		.btn-group {
+			border-color: var(--ui-border);
+			.btn-paging {
+				box-shadow: none;
+			}
+			.btn-paging + .btn-paging {
+				border-left-color: var(--ui-border);
+			}
+		}
+	}
+
+	/* ---- List sidebar (group-by, tags) when shown */
+	.list-sidebar {
+		.sidebar-label,
+		.group-by-dropdown .dropdown-toggle {
+			color: var(--ui-text-secondary);
+		}
+	}
+}

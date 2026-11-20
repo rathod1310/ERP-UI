@@ -1,0 +1,34 @@
+/* Colour states derived from the theme's base colours.
+   Base colours (--ui-primary, --ui-surface, ...) are written by the theme
+   engine for the active theme only. Mixing towards --ui-text darkens in light
+   themes and lightens in dark themes, so one rule serves both modes. */
+html[data-ui-theme] {
+	--ui-primary-hover: color-mix(in srgb, var(--ui-primary) 86%, var(--ui-text));
+	--ui-primary-active: color-mix(in srgb, var(--ui-primary) 74%, var(--ui-text));
+	--ui-primary-soft: color-mix(in srgb, var(--ui-primary) 12%, var(--ui-surface));
+	--ui-selected: color-mix(in srgb, var(--ui-primary) 10%, var(--ui-surface));
+
+	--ui-success-soft: color-mix(in srgb, var(--ui-success) 12%, var(--ui-surface));
+	--ui-warning-soft: color-mix(in srgb, var(--ui-warning) 12%, var(--ui-surface));
+	--ui-danger-soft: color-mix(in srgb, var(--ui-danger) 12%, var(--ui-surface));
+	--ui-info-soft: color-mix(in srgb, var(--ui-info) 12%, var(--ui-surface));
+
+	--ui-neutral-1: var(--ui-surface-muted);
+	--ui-neutral-2: var(--ui-hover);
+	--ui-neutral-3: color-mix(in srgb, var(--ui-text) 9%, var(--ui-surface));
+	--ui-neutral-4: color-mix(in srgb, var(--ui-text) 14%, var(--ui-surface));
+
+	--ui-focus-ring: 0 0 0 2px color-mix(in srgb, var(--ui-focus) 60%, transparent);
+
+	/* Text roles used by the Desk layout layer. --ui-text-muted is tuned for
+	   icons and decoration; muted *text* (help, breadcrumbs, counts) uses the
+	   slightly stronger --ui-text-subtle so it stays at WCAG AA (4.5:1). Primary
+	   used as text colour (active tab, active menu item, links on hover) is
+	   lifted towards --ui-text in dark themes for the same reason. */
+	--ui-text-subtle: color-mix(in srgb, var(--ui-text-muted) 88%, var(--ui-text));
+	--ui-primary-text: var(--ui-primary);
+}
+
+html[data-ui-theme][data-ui-mode="dark"] {
+	--ui-primary-text: color-mix(in srgb, var(--ui-primary) 60%, var(--ui-text));
+}

@@ -1,0 +1,138 @@
+/* Module D: workspace presentation.
+ *
+ * Presentation only: workspace records, their blocks, shortcuts, links,
+ * charts, number cards and permissions are rendered by Frappe as before.
+ * Edit mode (the native workspace editor) is left alone. */
+#{$desk} [data-page-route="Workspaces"] {
+	/* Native caps workspaces at --page-max-width (900px) and centres them;
+	   here they use the content width and line up with the page header. */
+	.layout-main {
+		max-width: var(--ui-content-max-width);
+	}
+	.layout-main-section {
+		padding: 0;
+	}
+	/* Grid gap: each block pads its content by half the gap and the block
+	   row is pulled out by the same amount, so the first and last cards line
+	   up with the page gutter. Same selector chain as the native rule. */
+	--ui-workspace-gap: 12px;
+	.layout-main .codex-editor .codex-editor__redactor {
+		margin: 0 calc(-0.5 * var(--ui-workspace-gap));
+		.ce-block .ce-block__content {
+			padding: calc(0.5 * var(--ui-workspace-gap));
+		}
+	}
+
+	/* Section headings ("Your Shortcuts", "Reports & Masters"). The native
+	   rule is nested under .layout-main .codex-editor__redactor .ce-block, so
+	   the same chain is needed here. */
+	.layout-main .codex-editor .codex-editor__redactor .ce-block .ce-header {
+		.h4,
+		h4 {
+			display: inline-block;
+			margin-top: var(--ui-gap-sm);
+			color: var(--ui-text);
+			font-size: var(--ui-font-size-md);
+			font-weight: var(--ui-heading-weight);
+		}
+		.h5,
+		h5 {
+			color: var(--ui-text-secondary);
+		}
+	}
+
+	/* Every widget is a card with the same border, radius and shadow. */
+	.widget {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius);
+		box-shadow: var(--ui-shadow-sm);
+		.widget-head .widget-label .widget-title {
+			color: var(--ui-text);
+		}
+		.widget-subtitle {
+			color: var(--ui-text-subtle);
+		}
+	}
+	/* Spacer blocks stay invisible. */
+	.widget.spacer {
+		background-color: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+	.widget.widget-shadow:hover {
+		box-shadow: var(--ui-shadow-md);
+	}
+
+	/* Shortcuts: equal height, the label and count on one line. */
+	.widget.shortcut-widget-box {
+		min-height: 48px;
+		padding: var(--ui-gap-md) var(--ui-card-padding);
+		justify-content: center;
+		.widget-label .widget-title {
+			font-size: var(--ui-font-size-base);
+			font-weight: var(--ui-font-weight-medium);
+		}
+		&:hover {
+			border-color: var(--ui-primary);
+			--icon-stroke: var(--ui-primary);
+			.widget-label .widget-title {
+				color: var(--ui-primary-text);
+			}
+		}
+	}
+
+	/* Link cards. */
+	.widget.links-widget-box {
+		padding: var(--ui-gap-md) var(--ui-card-padding);
+		.widget-head .widget-label .widget-title {
+			font-weight: var(--ui-heading-weight);
+		}
+		.link-item {
+			color: var(--ui-text-secondary);
+			padding: 3px var(--ui-gap-xs);
+			.link-content:hover {
+				color: var(--ui-primary-text);
+			}
+			&:hover {
+				background-color: var(--ui-hover);
+			}
+			.disabled-link {
+				color: var(--ui-text-subtle);
+			}
+		}
+	}
+
+	/* Number cards: muted label, large tabular value. */
+	.widget.number-widget-box {
+		padding: var(--ui-gap-md) var(--ui-card-padding);
+		.widget-head .widget-title {
+			color: var(--ui-text-secondary);
+			font-size: var(--ui-font-size-sm);
+		}
+		.number {
+			color: var(--ui-text);
+			font-weight: var(--ui-font-weight-semibold);
+			font-variant-numeric: tabular-nums;
+		}
+		&:hover {
+			border-color: var(--ui-border-strong);
+		}
+	}
+
+	/* Charts. */
+	.widget.dashboard-widget-box {
+		.filter-chart,
+		.chart-actions .btn {
+			background-color: var(--ui-control-bg);
+		}
+		.chart-loading-state {
+			background-color: var(--ui-surface-muted);
+		}
+	}
+
+	/* Quick lists. */
+	.widget.quick-list-widget-box .quick-list-item:hover {
+		background-color: var(--ui-hover);
+	}
+}

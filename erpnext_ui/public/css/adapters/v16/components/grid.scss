@@ -1,0 +1,112 @@
+/* Module E: child tables (grids). Rows, editing, add/delete, sorting and the
+ * expanded row form are native; only presentation changes. */
+#{$desk} {
+	.form-grid {
+		border-color: var(--ui-border);
+		border-radius: var(--ui-radius-lg);
+		background-color: var(--ui-surface);
+	}
+	.form-grid.error {
+		border-color: var(--ui-danger);
+	}
+
+	/* Header row */
+	.grid-heading-row {
+		border-bottom-color: var(--ui-border);
+		color: var(--ui-text-secondary);
+		.grid-row,
+		.grid-row .row-check,
+		.grid-row .row-index,
+		.grid-row .col {
+			background-color: var(--ui-surface-muted);
+		}
+		.grid-static-col,
+		.static-area {
+			font-size: var(--ui-font-size-xs);
+			font-weight: var(--ui-font-weight-semibold);
+			color: var(--ui-text-secondary);
+		}
+	}
+
+	/* Body rows */
+	.grid-body {
+		background-color: var(--ui-surface);
+		.col:last-child {
+			background-color: var(--ui-surface);
+		}
+		.grid-row {
+			border-bottom-color: var(--ui-border);
+			background-color: var(--ui-surface);
+		}
+		.grid-static-col {
+			background-color: var(--ui-surface);
+			border-color: var(--ui-border);
+			font-variant-numeric: tabular-nums;
+		}
+		.grid-row:hover .grid-static-col,
+		.grid-row:hover .row-index,
+		.grid-row:hover .row-check {
+			background-color: var(--ui-hover);
+		}
+		.row-index,
+		.row-check {
+			color: var(--ui-text-subtle);
+			background-color: var(--ui-surface);
+		}
+		.data-row.highlight .grid-static-col {
+			background-color: var(--ui-selected);
+		}
+	}
+	.grid-static-col,
+	.row-index,
+	.row-check {
+		border-color: var(--ui-border);
+	}
+
+	/* Editing: controls fill the cell, the focused cell shows the focus ring.
+	   Frappe hard-codes a white control background here (marked TODO for dark
+	   mode); the surface token works in both modes. */
+	.grid-body .editable-row {
+		--control-bg: var(--ui-surface);
+		--input-disabled-bg: var(--ui-disabled-bg);
+		.frappe-control .form-control {
+			border: 0;
+			border-radius: 0;
+			background-color: var(--ui-surface);
+			box-shadow: none;
+			&:focus {
+				box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ui-focus) 70%, transparent);
+			}
+		}
+	}
+
+	/* Empty table */
+	.grid-empty {
+		color: var(--ui-text-subtle);
+		background-color: var(--ui-surface);
+	}
+
+	/* Footer: add row, delete, download/upload */
+	.grid-footer {
+		background-color: transparent;
+		padding-top: var(--ui-gap-sm);
+		.btn {
+			height: var(--ui-button-height-sm);
+		}
+	}
+
+	/* Expanded row form */
+	.form-in-grid {
+		background-color: var(--ui-surface-elevated);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-radius-lg);
+		box-shadow: var(--ui-shadow-lg);
+		.grid-form-heading {
+			background-color: var(--ui-surface-muted);
+			border-bottom: var(--ui-border-width) solid var(--ui-border);
+		}
+		.form-section:not(:first-child) {
+			border-top-color: var(--ui-border);
+		}
+	}
+}

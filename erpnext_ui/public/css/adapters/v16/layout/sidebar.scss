@@ -1,0 +1,189 @@
+/* Module B: sidebar and navigation.
+ *
+ * The native v16 sidebar is kept (workspace switcher, role-filtered items,
+ * nested sections, expand/collapse, mobile overlay); this restyles it. Native
+ * hover/active colours are hard-coded (--sidebar-*-color), so they are mapped
+ * to tokens here. The optional filter box comes from js/adapters/v16/navigation.js.
+ *
+ * Colours come from the theme's sidebar roles (sidebar-bg, -text, -active-bg,
+ * -active-text; contrast-checked), so light, dark and brand-filled sidebars all
+ * use the same rules. Hover and borders are mixed from those roles. */
+#{$desk} {
+	--ui-sidebar-hover: color-mix(in srgb, var(--ui-sidebar-text) 11%, var(--ui-sidebar-bg));
+	--ui-sidebar-line: color-mix(in srgb, var(--ui-sidebar-text) 16%, var(--ui-sidebar-bg));
+	--sidebar-hover-color: var(--ui-sidebar-hover);
+	--sidebar-active-color: var(--ui-sidebar-active-bg);
+	--sidebar-border-color: var(--ui-sidebar-line);
+	--divider-color: var(--ui-sidebar-line);
+
+	.body-sidebar {
+		/* Frappe colours sidebar icons and the user block with its ink utilities
+		   (.text-ink-gray-7 and friends); inside the sidebar they follow the
+		   sidebar text role, so dark and brand-filled sidebars stay readable. */
+		--ink-gray-5: var(--ui-sidebar-text);
+		--ink-gray-6: var(--ui-sidebar-text);
+		--ink-gray-7: var(--ui-sidebar-text);
+		--ink-gray-8: var(--ui-sidebar-text);
+		--ink-gray-9: var(--ui-sidebar-text);
+		--text-color: var(--ui-sidebar-text);
+		background: var(--ui-sidebar-bg);
+		color: var(--ui-sidebar-text);
+		border-right: var(--ui-border-width) solid var(--ui-sidebar-line);
+		gap: var(--ui-gap-sm);
+	}
+
+	/* Header: workspace switcher with brand logo. */
+	.body-sidebar .sidebar-header {
+		border-radius: var(--ui-radius-md);
+		&:hover {
+			background-color: var(--ui-sidebar-hover);
+		}
+		.header-title {
+			color: var(--ui-sidebar-text);
+			font-weight: var(--ui-font-weight-semibold);
+		}
+		.header-subtitle {
+			color: var(--ui-sidebar-text);
+			opacity: 0.85;
+		}
+	}
+
+	/* Items: one height, one radius, one icon colour. */
+	.body-sidebar .standard-sidebar-item {
+		border-radius: var(--ui-radius-md);
+		margin-bottom: 1px;
+
+		.item-anchor {
+			height: var(--ui-sidebar-item-height);
+			color: var(--ui-sidebar-text);
+			border-radius: inherit;
+		}
+		.sidebar-item-icon {
+			color: var(--ui-sidebar-text);
+			--icon-stroke: currentColor;
+		}
+		.sidebar-item-label {
+			font-size: var(--ui-font-size-sm);
+		}
+		.sidebar-item-control .drop-icon,
+		.sidebar-item-suffix {
+			color: var(--ui-sidebar-text);
+		}
+		&:not(.active-sidebar):has(a:not(.section-break)):hover {
+			background-color: var(--ui-sidebar-hover);
+			border-radius: var(--ui-radius-md);
+		}
+	}
+
+	/* Active item: tinted fill and primary text, no shadow. */
+	.body-sidebar .active-sidebar,
+	.body-sidebar .standard-sidebar-item.active-sidebar {
+		background-color: var(--ui-sidebar-active-bg);
+		box-shadow: none;
+		border-radius: var(--ui-radius-md);
+		.item-anchor,
+		.sidebar-item-icon {
+			color: var(--ui-sidebar-active-text);
+		}
+		.sidebar-item-label {
+			font-weight: var(--ui-font-weight-medium);
+		}
+	}
+
+	/* Nested sections: the parent reads as a group heading, children are
+	   indented with a guide line. */
+	.body-sidebar .sidebar-child-item.nested-container {
+		margin-left: 15px;
+		padding-left: 4px;
+		border-left: var(--ui-border-width) solid var(--ui-sidebar-line);
+	}
+	.body-sidebar .section-break {
+		color: var(--ui-sidebar-text);
+		font-size: var(--ui-font-size-xs);
+		font-weight: var(--ui-font-weight-semibold);
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+	}
+
+	/* User block at the bottom. */
+	.body-sidebar .body-sidebar-bottom {
+		border-top: var(--ui-border-width) solid var(--ui-sidebar-line);
+		padding-top: var(--ui-gap-sm);
+	}
+	.body-sidebar .dropdown-navbar-user,
+	.body-sidebar .dropdown-navbar-user .avatar-name-email,
+	.body-sidebar .dropdown-navbar-user .avatar-name-email span {
+		color: var(--ui-sidebar-text);
+	}
+	.body-sidebar .dropdown-navbar-user .text-secondary {
+		color: var(--ui-sidebar-text) !important; /* Bootstrap's .text-secondary is !important */
+		opacity: 0.85;
+	}
+	.body-sidebar .dropdown-navbar-user:hover {
+		background-color: var(--ui-sidebar-hover);
+		border-radius: var(--ui-radius-md);
+	}
+
+	/* Collapse toggle: a small round button on the sidebar edge. */
+	.body-sidebar .sidebar-toggle-btn {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border-strong);
+		color: var(--ui-text-secondary);
+		box-shadow: var(--ui-shadow-sm);
+		&:hover {
+			color: var(--ui-text);
+			border-color: var(--ui-primary);
+		}
+	}
+
+	/* Navigation filter (js/adapters/v16/navigation.js). */
+	.ui-nav-filter:not([hidden]) {
+		display: block;
+	}
+	.ui-nav-filter {
+		width: 100%;
+		padding: 0 1px var(--ui-gap-xs);
+		input {
+			width: 100%;
+			height: var(--ui-control-height-sm);
+			padding: 0 var(--ui-gap-sm);
+			font-size: var(--ui-font-size-sm);
+			color: var(--ui-sidebar-text);
+			background-color: color-mix(in srgb, var(--ui-sidebar-text) 7%, var(--ui-sidebar-bg));
+			border: var(--ui-border-width) solid var(--ui-sidebar-line);
+			border-radius: var(--ui-radius-md);
+			outline: none;
+			&::placeholder {
+				color: var(--ui-sidebar-text);
+				opacity: 0.8;
+			}
+			&:focus {
+				border-color: var(--ui-focus);
+				box-shadow: var(--ui-focus-ring);
+			}
+		}
+	}
+	.ui-nav-filter-empty {
+		padding: var(--ui-gap-sm);
+		font-size: var(--ui-font-size-sm);
+		color: var(--ui-sidebar-text);
+	}
+	.sidebar-item-container.ui-nav-hidden {
+		display: none;
+	}
+	/* A collapsed section (native .hidden, display:none !important) is shown
+	   while the filter matches an item inside it; the native state is not
+	   changed. */
+	.nested-container.hidden.ui-nav-reveal {
+		display: block !important;
+	}
+	.body-sidebar-container:not(.expanded) .ui-nav-filter {
+		display: none;
+	}
+}
+
+/* Outside the gate: the filter box is invisible whenever the layout layer is
+   off or the engine is inactive. */
+.ui-nav-filter {
+	display: none;
+}

@@ -1,0 +1,46 @@
+/* Responsive behaviour. Desktop is the primary layout; below it the gutters
+ * shrink, stacked columns lose their side margins and dialogs use the screen
+ * width. Frappe's own breakpoints (sidebar overlay below 576px, form sidebar
+ * hidden below 992px) are kept. Breakpoints match tokens/layout.scss. */
+#{$desk} {
+	@media (max-width: 991.98px) {
+		--ui-page-padding: 12px;
+		--ui-card-padding: 12px;
+
+		/* Below 992px the form sidebar is an off-canvas overlay, but the
+		   native rule still reserves its width for the form; use it. */
+		body[data-route^="Form/"] .layout-main-section-wrapper {
+			width: 100%;
+			flex: 1 1 100%;
+		}
+		.layout-side-section .form-sidebar {
+			margin-left: 0;
+			margin-top: var(--ui-gap-lg);
+		}
+		.form-footer {
+			margin-top: var(--ui-gap-md);
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		--ui-page-padding: 8px;
+		--ui-section-spacing: 16px;
+
+		.page-body.container {
+			padding-top: var(--ui-gap-sm);
+		}
+		.page-head .navbar-breadcrumbs li a,
+		.page-head .navbar-breadcrumbs li a.title-text {
+			font-size: var(--ui-font-size-md);
+		}
+		.modal-dialog {
+			margin: var(--ui-gap-sm);
+		}
+		.list-paging-area {
+			padding: var(--ui-gap-sm);
+		}
+		.report-wrapper {
+			padding: var(--ui-gap-sm) var(--ui-gap-sm) 0;
+		}
+	}
+}

@@ -1,0 +1,28 @@
+/* Density. "Comfortable" equals native Frappe v16 sizing. */
+:root,
+html[data-ui-density="comfortable"] {
+	--ui-control-height: 28px;
+	--ui-control-height-sm: 24px;
+	--ui-row-height: 36px;
+	--ui-cell-padding-y: 8px;
+	--ui-cell-padding-x: 10px;
+	--ui-density-scale: 1;
+}
+
+html[data-ui-density="compact"] {
+	--ui-control-height: 26px;
+	--ui-control-height-sm: 22px;
+	--ui-row-height: 30px;
+	--ui-cell-padding-y: 5px;
+	--ui-cell-padding-x: 8px;
+	--ui-density-scale: 0.85;
+}
+
+html[data-ui-density="spacious"] {
+	--ui-control-height: 32px;
+	--ui-control-height-sm: 28px;
+	--ui-row-height: 42px;
+	--ui-cell-padding-y: 10px;
+	--ui-cell-padding-x: 12px;
+	--ui-density-scale: 1.15;
+}

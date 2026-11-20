@@ -1,0 +1,277 @@
+{
+  "homes": {},
+  "differences": {
+    "classic-business / modern-business": {
+      "mean": 15.6,
+      "regions": 68
+    },
+    "classic-business / application-hub": {
+      "mean": 16,
+      "regions": 65
+    },
+    "classic-business / executive-suite": {
+      "mean": 5.1,
+      "regions": 66
+    },
+    "classic-business / department-workspace": {
+      "mean": 16.1,
+      "regions": 69
+    },
+    "classic-business / minimal-professional": {
+      "mean": 15.7,
+      "regions": 73
+    },
+    "modern-business / application-hub": {
+      "mean": 5.9,
+      "regions": 68
+    },
+    "modern-business / executive-suite": {
+      "mean": 16.9,
+      "regions": 62
+    },
+    "modern-business / department-workspace": {
+      "mean": 4.6,
+      "regions": 46
+    },
+    "modern-business / minimal-professional": {
+      "mean": 3.7,
+      "regions": 49
+    },
+    "application-hub / executive-suite": {
+      "mean": 17.5,
+      "regions": 69
+    },
+    "application-hub / department-workspace": {
+      "mean": 6,
+      "regions": 60
+    },
+    "application-hub / minimal-professional": {
+      "mean": 6,
+      "regions": 60
+    },
+    "executive-suite / department-workspace": {
+      "mean": 17.4,
+      "regions": 50
+    },
+    "executive-suite / minimal-professional": {
+      "mean": 18,
+      "regions": 76
+    },
+    "department-workspace / minimal-professional": {
+      "mean": 5.5,
+      "regions": 74
+    }
+  },
+  "structure": {
+    "classic-business": {
+      "route": "",
+      "page": "page-ui-home",
+      "x": "classic-business",
+      "theme": "corporate-blue",
+      "shell": {
+        "nav": "structured",
+        "header": "classic",
+        "launcher": "none",
+        "home": "workspace",
+        "form": "bands",
+        "list": "lined",
+        "report": "traditional"
+      },
+      "sideVisible": true,
+      "design": "workspace",
+      "kpis": 0,
+      "band": false,
+      "linkBorder": null,
+      "markers": {
+        "hello": true,
+        "tiles": 0,
+        "search": false,
+        "band": false,
+        "deptTabs": 0,
+        "chart": false,
+        "cards": 0,
+        "wsShortcuts": 4,
+        "wsCards": 4,
+        "minSearch": false,
+        "minRows": 0,
+        "stages": 0,
+        "columns": 0
+      }
+    },
+    "modern-business": {
+      "route": "",
+      "page": "page-ui-home",
+      "x": "modern-business",
+      "theme": "modern-office",
+      "shell": {
+        "nav": "floating",
+        "header": "command",
+        "launcher": "popover",
+        "home": "dashboard",
+        "form": "facts",
+        "list": "card-table",
+        "report": "analytic"
+      },
+      "sideVisible": true,
+      "design": "dashboard",
+      "kpis": 4,
+      "band": false,
+      "linkBorder": null,
+      "markers": {
+        "hello": true,
+        "tiles": 0,
+        "search": false,
+        "band": false,
+        "deptTabs": 0,
+        "chart": true,
+        "cards": 2,
+        "wsShortcuts": 0,
+        "wsCards": 0,
+        "minSearch": false,
+        "minRows": 0,
+        "stages": 0,
+        "columns": 0
+      }
+    },
+    "application-hub": {
+      "route": "",
+      "page": "page-ui-home",
+      "x": "application-hub",
+      "theme": "slate-professional",
+      "shell": {
+        "nav": "app-rail",
+        "header": "search",
+        "launcher": "full",
+        "home": "hub",
+        "form": "standard",
+        "list": "status-tabs",
+        "report": "traditional"
+      },
+      "sideVisible": false,
+      "design": "hub",
+      "kpis": 0,
+      "band": false,
+      "linkBorder": null,
+      "markers": {
+        "hello": false,
+        "tiles": 19,
+        "search": true,
+        "band": false,
+        "deptTabs": 0,
+        "chart": false,
+        "cards": 1,
+        "wsShortcuts": 0,
+        "wsCards": 0,
+        "minSearch": false,
+        "minRows": 0,
+        "stages": 0,
+        "columns": 0
+      }
+    },
+    "executive-suite": {
+      "route": "",
+      "page": "page-ui-home",
+      "x": "executive-suite",
+      "theme": "executive-green",
+      "shell": {
+        "nav": "executive",
+        "header": "management",
+        "launcher": "popover",
+        "home": "overview",
+        "form": "summary",
+        "list": "data-summary",
+        "report": "analytic"
+      },
+      "sideVisible": true,
+      "design": "overview",
+      "kpis": 5,
+      "band": false,
+      "linkBorder": null,
+      "markers": {
+        "hello": true,
+        "tiles": 0,
+        "search": false,
+        "band": true,
+        "deptTabs": 0,
+        "chart": true,
+        "cards": 4,
+        "wsShortcuts": 0,
+        "wsCards": 0,
+        "minSearch": false,
+        "minRows": 0,
+        "stages": 0,
+        "columns": 0
+      }
+    },
+    "department-workspace": {
+      "route": "",
+      "page": "page-ui-home",
+      "x": "department-workspace",
+      "theme": "operations-teal",
+      "shell": {
+        "nav": "department",
+        "header": "department-tabs",
+        "launcher": "none",
+        "home": "department",
+        "form": "next-step",
+        "list": "my-work",
+        "report": "traditional"
+      },
+      "sideVisible": true,
+      "design": "department",
+      "kpis": 0,
+      "band": false,
+      "linkBorder": null,
+      "markers": {
+        "hello": true,
+        "tiles": 0,
+        "search": false,
+        "band": false,
+        "deptTabs": 9,
+        "chart": false,
+        "cards": 0,
+        "wsShortcuts": 0,
+        "wsCards": 0,
+        "minSearch": false,
+        "minRows": 0,
+        "stages": 4,
+        "columns": 3
+      }
+    },
+    "minimal-professional": {
+      "route": "",
+      "page": "page-ui-home",
+      "x": "minimal-professional",
+      "theme": "mono-ink",
+      "shell": {
+        "nav": "icon-rail",
+        "header": "none",
+        "launcher": "none",
+        "home": "minimal",
+        "form": "hairline",
+        "list": "hairline",
+        "report": "plain"
+      },
+      "sideVisible": true,
+      "design": "minimal",
+      "kpis": 0,
+      "band": false,
+      "linkBorder": null,
+      "markers": {
+        "hello": false,
+        "tiles": 0,
+        "search": false,
+        "band": false,
+        "deptTabs": 0,
+        "chart": false,
+        "cards": 0,
+        "wsShortcuts": 0,
+        "wsCards": 0,
+        "minSearch": true,
+        "minRows": 14,
+        "stages": 0,
+        "columns": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+/* Module C: navbar and page header.
+ *
+ * v16 has no global navbar: brand, search, notifications and the user menu
+ * live in the sidebar, and every page has a sticky .page-head with
+ * breadcrumbs, title, status and actions. That page head is the top bar, so
+ * it gets the navbar surface and a fixed height. */
+#{$desk} {
+	--page-head-height: var(--ui-page-head-height);
+
+	.page-head {
+		background-color: var(--ui-navbar-bg);
+		border-bottom: var(--ui-border-width) solid var(--ui-border);
+
+		.page-head-content {
+			height: var(--ui-page-head-height);
+			gap: var(--ui-gap-md);
+		}
+	}
+
+	/* Breadcrumbs: one size; earlier crumbs muted, the current page (last
+	   crumb: list title, document title or report name) in the text colour. */
+	.page-head .page-title {
+		padding-left: 0;
+		gap: var(--ui-gap-sm);
+		.indicator-pill {
+			margin-left: var(--ui-gap-sm);
+		}
+	}
+	.page-head .navbar-breadcrumbs {
+		--icon-stroke: var(--ui-text-muted);
+		li a,
+		li a.title-text {
+			color: var(--ui-text-subtle);
+			font-size: var(--ui-font-size-lg);
+			font-weight: var(--ui-font-weight-medium);
+		}
+		li a:hover,
+		li a.title-text:hover {
+			color: var(--ui-text);
+		}
+		li a::before {
+			color: var(--ui-border-strong);
+		}
+		li:last-child a,
+		li:last-child a.title-text {
+			color: var(--ui-text);
+			font-weight: var(--ui-heading-weight);
+		}
+	}
+
+	/* Actions: one gap, one height. */
+	.page-head .page-actions {
+		gap: var(--ui-gap-sm);
+		.btn {
+			margin-left: 0;
+			height: var(--ui-button-height);
+		}
+		.custom-actions,
+		.custom-btn-group,
+		.standard-actions {
+			gap: var(--ui-gap-sm);
+		}
+		.custom-actions:empty,
+		.custom-btn-group:empty {
+			display: none;
+		}
+	}
+}

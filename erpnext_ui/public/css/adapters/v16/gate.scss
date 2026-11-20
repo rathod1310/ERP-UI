@@ -1,0 +1,6 @@
+/* Selector prefix for the Desk layout layer (Phase 2). Rules apply only while
+   the theme engine runs the v16 adapter AND the layout layer is enabled, so
+   turning "Enhanced Desk Layout" off (or the engine failing) leaves either the
+   Phase 1 colours or the native Desk. Specificity of the prefix is (0,2,1),
+   which beats Frappe's single-class rules without !important. */
+$desk: 'html[data-ui-adapter="v16"][data-ui-layout="enhanced"]';

@@ -1,0 +1,21 @@
+/*
+ * Frappe v16 Desk layout layer (Phase 2). Every selector here is specific to
+ * the v16 DOM, which is why it lives under adapters/. Colours, spacing and
+ * sizes come from --ui-* tokens only.
+ */
+@import "gate";
+@import "layout/desk";
+@import "layout/sidebar";
+@import "layout/page-head";
+@import "layout/workspace";
+@import "components/controls";
+@import "components/overlays";
+@import "components/indicators";
+@import "components/forms";
+@import "components/grid";
+@import "components/lists";
+@import "components/reports";
+@import "components/feedback";
+@import "recipes";
+@import "formats";
+@import "responsive";

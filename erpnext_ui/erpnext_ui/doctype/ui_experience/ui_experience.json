@@ -1,0 +1,322 @@
+{
+ "actions": [],
+ "autoname": "field:experience_key",
+ "creation": "2026-11-04 10:00:00.000000",
+ "description": "A complete, coordinated ERPNext UI experience: theme, layout system, density and home page.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "experience_name",
+  "experience_key",
+  "enabled",
+  "column_break_main",
+  "is_standard",
+  "sort_order",
+  "description",
+  "audience",
+  "theme_section",
+  "light_theme",
+  "dark_theme",
+  "column_break_theme",
+  "compatible_themes",
+  "shell_section",
+  "shell_nav",
+  "shell_header",
+  "shell_launcher",
+  "shell_home",
+  "column_break_shell",
+  "shell_form",
+  "shell_list",
+  "shell_report",
+  "login_layout",
+  "layout_section",
+  "density",
+  "font",
+  "layout_navigation",
+  "layout_workspace_format",
+  "layout_form_format",
+  "column_break_layout",
+  "layout_list_format",
+  "layout_content_width",
+  "layout_card_style",
+  "layout_page_background",
+  "home_section",
+  "home_cards",
+  "column_break_home",
+  "home_charts"
+ ],
+ "fields": [
+  {
+   "fieldname": "experience_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Experience Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Lower-case letters, digits and hyphens. Used in the browser and in user preferences.",
+   "fieldname": "experience_key",
+   "fieldtype": "Data",
+   "label": "Key",
+   "no_copy": 1,
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "column_break_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_standard",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Standard",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "100",
+   "fieldname": "sort_order",
+   "fieldtype": "Int",
+   "label": "Sort Order"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "audience",
+   "fieldtype": "Small Text",
+   "label": "Who It Is For"
+  },
+  {
+   "fieldname": "theme_section",
+   "fieldtype": "Section Break",
+   "label": "Visual Theme"
+  },
+  {
+   "fieldname": "light_theme",
+   "fieldtype": "Link",
+   "label": "Light Theme",
+   "options": "UI Theme",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dark_theme",
+   "fieldtype": "Link",
+   "label": "Dark Theme",
+   "options": "UI Theme",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_theme",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Other themes that suit this experience, one per line. Shown to users as suggestions.",
+   "fieldname": "compatible_themes",
+   "fieldtype": "Small Text",
+   "label": "Also Works With"
+  },
+  {
+   "description": "One design per part of the screen. Every experience with the same choice looks the same there.",
+   "fieldname": "shell_section",
+   "fieldtype": "Section Break",
+   "label": "Layout System"
+  },
+  {
+   "default": "structured",
+   "fieldname": "shell_nav",
+   "fieldtype": "Select",
+   "label": "Navigation",
+   "options": "structured\nfloating\napp-rail\nexecutive\ndepartment\nicon-rail"
+  },
+  {
+   "default": "classic",
+   "fieldname": "shell_header",
+   "fieldtype": "Select",
+   "label": "Header",
+   "options": "classic\ncommand\nsearch\nmanagement\ndepartment-tabs\nnone"
+  },
+  {
+   "default": "none",
+   "fieldname": "shell_launcher",
+   "fieldtype": "Select",
+   "label": "App Launcher",
+   "options": "none\npopover\nfull"
+  },
+  {
+   "default": "workspace",
+   "fieldname": "shell_home",
+   "fieldtype": "Select",
+   "label": "Home",
+   "options": "workspace\ndashboard\nhub\noverview\ndepartment\nminimal"
+  },
+  {
+   "fieldname": "column_break_shell",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "bands",
+   "fieldname": "shell_form",
+   "fieldtype": "Select",
+   "label": "Forms",
+   "options": "bands\nfacts\nstandard\nsummary\nnext-step\nhairline"
+  },
+  {
+   "default": "lined",
+   "fieldname": "shell_list",
+   "fieldtype": "Select",
+   "label": "Lists",
+   "options": "lined\ncard-table\nstatus-tabs\ndata-summary\nmy-work\nhairline"
+  },
+  {
+   "default": "traditional",
+   "fieldname": "shell_report",
+   "fieldtype": "Select",
+   "label": "Reports",
+   "options": "traditional\nanalytic\nplain"
+  },
+  {
+   "default": "Split",
+   "fieldname": "login_layout",
+   "fieldtype": "Select",
+   "label": "Login Page",
+   "options": "Split\nCentered\nMinimal\nNative"
+  },
+  {
+   "fieldname": "layout_section",
+   "fieldtype": "Section Break",
+   "label": "Density and Layout"
+  },
+  {
+   "default": "Comfortable",
+   "fieldname": "density",
+   "fieldtype": "Select",
+   "label": "Density",
+   "options": "Compact\nComfortable\nSpacious"
+  },
+  {
+   "default": "Inter",
+   "fieldname": "font",
+   "fieldtype": "Select",
+   "label": "Font",
+   "options": "Inter\nSystem UI\nHumanist Sans"
+  },
+  {
+   "default": "Standard",
+   "fieldname": "layout_navigation",
+   "fieldtype": "Select",
+   "label": "Navigation",
+   "options": "Standard\nCompact\nCollapsed"
+  },
+  {
+   "default": "Standard",
+   "fieldname": "layout_workspace_format",
+   "fieldtype": "Select",
+   "label": "Workspace",
+   "options": "Standard\nCards\nCompact\nComfortable"
+  },
+  {
+   "default": "Standard",
+   "fieldname": "layout_form_format",
+   "fieldtype": "Select",
+   "label": "Forms",
+   "options": "Standard\nCompact\nComfortable"
+  },
+  {
+   "fieldname": "column_break_layout",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Standard",
+   "fieldname": "layout_list_format",
+   "fieldtype": "Select",
+   "label": "Lists and Tables",
+   "options": "Standard\nCompact\nComfortable"
+  },
+  {
+   "default": "Standard",
+   "fieldname": "layout_content_width",
+   "fieldtype": "Select",
+   "label": "Content Width",
+   "options": "Standard\nFull Width\nContained\nNarrow"
+  },
+  {
+   "default": "Bordered",
+   "fieldname": "layout_card_style",
+   "fieldtype": "Select",
+   "label": "Cards",
+   "options": "Bordered\nMinimal"
+  },
+  {
+   "default": "Tinted",
+   "fieldname": "layout_page_background",
+   "fieldtype": "Select",
+   "label": "Page Background",
+   "options": "Tinted\nPlain"
+  },
+  {
+   "description": "Used by the Dashboard and Executive Overview homes. Cards and charts the user cannot read are left out.",
+   "fieldname": "home_section",
+   "fieldtype": "Section Break",
+   "label": "Home Page Content"
+  },
+  {
+   "description": "Number Card names, one per line.",
+   "fieldname": "home_cards",
+   "fieldtype": "Small Text",
+   "label": "Number Cards"
+  },
+  {
+   "fieldname": "column_break_home",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Dashboard Chart names, one per line.",
+   "fieldname": "home_charts",
+   "fieldtype": "Small Text",
+   "label": "Dashboard Charts"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-11-04 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ERPNext UI",
+ "name": "UI Experience",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "description",
+ "show_title_field_in_link": 1,
+ "sort_field": "sort_order",
+ "sort_order": "ASC",
+ "states": [],
+ "title_field": "experience_name",
+ "track_changes": 1
+}

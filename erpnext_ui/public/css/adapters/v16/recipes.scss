@@ -1,0 +1,279 @@
+/* Theme recipes (Phase 3, M2).
+ *
+ * A theme is a palette plus a recipe: structural treatments chosen from the
+ * options below (theme/tokens.py RECIPES). The theme engine writes the
+ * recipe to html[data-ui-t-<name>]. Each option is written once and uses
+ * tokens only, so any theme, including generated ones, can pick any option.
+ * Values that equal the Phase 2 Desk (attached, solid, bordered, outlined,
+ * lined, rounded, none, body, proportional) add no rules here.
+ *
+ * Imported before formats.scss: an explicit Advanced layout choice (for
+ * example Minimal cards) wins over the theme's default treatment.
+ */
+
+/* ---------------------------------------------------------- sidebar */
+#{$desk}[data-ui-t-sidebar="gradient"] .body-sidebar {
+	background: linear-gradient(
+		180deg,
+		var(--ui-sidebar-bg) 0%,
+		color-mix(in srgb, var(--ui-sidebar-bg) 82%, var(--ui-primary)) 100%
+	);
+}
+
+/* Floating: the sidebar becomes a rounded panel inset from the window edge.
+   The placeholder that keeps the page beside the sidebar grows by the same
+   inset, so nothing overlaps. Phones keep Frappe's overlay. */
+@media (min-width: 768px) {
+	#{$desk}[data-ui-t-sidebar="floating"] {
+		--ui-sidebar-inset: 10px;
+		.body-sidebar-container .body-sidebar {
+			top: var(--ui-sidebar-inset);
+			left: var(--ui-sidebar-inset);
+			height: calc(100vh - 2 * var(--ui-sidebar-inset));
+			border: var(--ui-border-width) solid var(--ui-border);
+			border-radius: calc(var(--ui-radius) + 4px);
+			box-shadow: var(--ui-shadow-md);
+		}
+		.body-sidebar-container.expanded .body-sidebar-placeholder {
+			width: calc(var(--sidebar-width) + var(--ui-sidebar-inset));
+		}
+		.body-sidebar-container:not(.expanded) .body-sidebar {
+			margin: var(--ui-sidebar-inset) 0 var(--ui-sidebar-inset) var(--ui-sidebar-inset);
+		}
+	}
+}
+
+/* ---------------------------------------------------------- page header */
+#{$desk}[data-ui-t-navbar="translucent"] .page-head {
+	background-color: color-mix(in srgb, var(--ui-navbar-bg) 80%, transparent);
+	backdrop-filter: saturate(1.2) blur(10px);
+}
+#{$desk}[data-ui-t-navbar="transparent"] .page-head {
+	background-color: color-mix(in srgb, var(--ui-background) 86%, transparent);
+	backdrop-filter: blur(10px);
+	border-bottom-color: transparent;
+}
+
+/* ---------------------------------------------------------- surfaces */
+#{$desk}[data-ui-t-surface="raised"] {
+	.layout-main-section,
+	.std-form-layout > .form-layout,
+	.form-footer,
+	.layout-side-section .form-sidebar,
+	[data-page-route="Workspaces"] .widget {
+		border-color: transparent;
+		box-shadow: var(--ui-shadow-md);
+	}
+	[data-page-route="Workspaces"] .widget.spacer,
+	body[data-route^="Workspaces"] .layout-main-section,
+	body[data-route^="Form/"] .layout-main-section {
+		box-shadow: none;
+	}
+}
+#{$desk}[data-ui-t-surface="flat"] {
+	.layout-main-section,
+	.std-form-layout > .form-layout,
+	.form-footer,
+	.layout-side-section .form-sidebar,
+	[data-page-route="Workspaces"] .widget,
+	.frappe-card {
+		box-shadow: none;
+	}
+}
+
+/* ---------------------------------------------------------- fields */
+#{$desk}[data-ui-t-input="filled"] {
+	.frappe-control .form-control,
+	.page-form .form-control,
+	.modal .form-control {
+		background-color: var(--ui-control-bg);
+		border-color: transparent;
+		&:hover {
+			border-color: var(--ui-border-strong);
+		}
+		&:focus {
+			background-color: var(--ui-surface);
+			border-color: var(--ui-focus);
+		}
+	}
+}
+#{$desk}[data-ui-t-input="underline"] {
+	.frappe-control .form-control,
+	.page-form .form-control,
+	.modal .form-control {
+		background-color: transparent;
+		border-width: 0 0 var(--ui-border-width);
+		border-radius: 0;
+		&:focus {
+			box-shadow: 0 1px 0 0 var(--ui-focus);
+		}
+	}
+	/* Read-only values keep their muted fill, so the ledger look still tells
+	   editable from read-only. */
+	.frappe-control .like-disabled-input {
+		border-radius: var(--ui-radius-sm);
+	}
+}
+
+/* ---------------------------------------------------------- tables */
+#{$desk}[data-ui-t-table="zebra"] {
+	.frappe-list .result .list-row-container:nth-child(odd):not(:first-child),
+	.frappe-list .result .list-row-container:nth-child(odd):not(:first-child) .level-right {
+		background-color: var(--ui-surface-muted);
+	}
+	.datatable .dt-row:nth-child(even):not(.dt-row-totalRow) .dt-cell,
+	.form-grid .grid-body .grid-row:nth-child(even) .grid-static-col {
+		background-color: var(--ui-surface-muted);
+	}
+}
+#{$desk}[data-ui-t-table="rows"] {
+	.frappe-list .result .list-row-container:not(:first-child) {
+		margin: var(--ui-gap-xs) 0;
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-radius-md);
+		background-color: var(--ui-surface);
+		.list-row {
+			border-bottom: 0;
+		}
+		.level-right {
+			border-radius: 0 var(--ui-radius-md) var(--ui-radius-md) 0;
+		}
+	}
+	.frappe-list .result .list-row-container:not(:first-child):hover {
+		border-color: color-mix(in srgb, var(--ui-primary) 35%, var(--ui-border));
+	}
+}
+#{$desk}[data-ui-t-table="ruled"] {
+	.list-row-head,
+	.list-row-head .level-right {
+		background-color: transparent;
+	}
+	.list-row-head {
+		border-radius: 0;
+		border-bottom: 2px solid var(--ui-text);
+	}
+	.datatable .dt-cell--header,
+	.datatable .dt-cell--header .dt-cell__content {
+		background-color: var(--ui-surface);
+	}
+	.datatable .dt-header .dt-row {
+		border-bottom: 2px solid var(--ui-text);
+	}
+	.form-grid .grid-heading-row {
+		border-bottom: 2px solid var(--ui-text);
+		.grid-row,
+		.grid-row .row-check,
+		.grid-row .row-index,
+		.grid-row .col {
+			background-color: var(--ui-surface);
+		}
+	}
+}
+
+/* ---------------------------------------------------------- buttons */
+#{$desk}[data-ui-t-button="square"] .btn {
+	border-radius: var(--ui-radius-sm);
+}
+#{$desk}[data-ui-t-button="pill"] {
+	.btn:not(.btn-paging):not(.icon-btn) {
+		border-radius: 999px;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+	.btn.icon-btn {
+		border-radius: 50%;
+	}
+}
+
+/* ---------------------------------------------------------- typography */
+#{$desk}[data-ui-t-heading="serif"] {
+	.page-head .navbar-breadcrumbs li:last-child a,
+	.form-section .section-head,
+	.form-tabs-list .form-tabs .nav-link.active,
+	.modal-title,
+	.widget .widget-head .widget-title,
+	.layout-main .codex-editor .codex-editor__redactor .ce-block .ce-header .h4 {
+		font-family: var(--ui-font-family-serif);
+		letter-spacing: 0;
+	}
+}
+/* Numbers only: numeric list columns (Frappe marks them .text-right), numeric
+   child-table cells and fields, number cards. Report datatables carry no type
+   class per cell, so they keep the Phase 2 tabular figures without the mono face. */
+#{$desk}[data-ui-t-numerals="mono"] {
+	.frappe-list .list-row:not(.list-row-head) .list-row-col.text-right,
+	.form-grid .grid-body .grid-static-col[data-fieldtype="Currency"],
+	.form-grid .grid-body .grid-static-col[data-fieldtype="Float"],
+	.form-grid .grid-body .grid-static-col[data-fieldtype="Int"],
+	.frappe-control[data-fieldtype="Currency"] .control-value,
+	.frappe-control[data-fieldtype="Float"] .control-value,
+	.frappe-control[data-fieldtype="Int"] .control-value,
+	.widget.number-widget-box .number {
+		font-family: var(--ui-font-family-mono);
+		font-variant-numeric: tabular-nums;
+		letter-spacing: 0;
+	}
+}
+
+/* ---------------------------------------------------------- backdrops */
+/* The backdrop paints on a fixed layer behind the Desk. The page-level
+   containers become transparent so it shows; cards, forms, tables and menus
+   keep their opaque surfaces, so no content sits on a pattern. */
+#{$desk}[data-ui-t-backdrop]:not([data-ui-t-backdrop="none"]):not([data-ui-canvas="plain"]) {
+	body,
+	.page-container,
+	.main-section {
+		background-color: transparent;
+	}
+	body::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+	}
+}
+
+#{$desk}[data-ui-canvas="plain"] body::before {
+	display: none !important;
+}
+#{$desk}[data-ui-t-backdrop="gradient"] body::before {
+	background: linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--ui-primary) 12%, var(--ui-background)) 0,
+		var(--ui-background) 320px
+	);
+}
+#{$desk}[data-ui-t-backdrop="geometric"] body::before {
+	background:
+		linear-gradient(116deg, color-mix(in srgb, var(--ui-primary) 7%, transparent) 0 22%, transparent 22%),
+		linear-gradient(154deg, transparent 0 70%, color-mix(in srgb, var(--ui-secondary) 6%, transparent) 70%);
+}
+#{$desk}[data-ui-t-backdrop="texture"] body::before {
+	background: radial-gradient(circle, color-mix(in srgb, var(--ui-text) 12%, transparent) 1px, transparent 1.4px) 0 0 / 16px 16px;
+}
+#{$desk}[data-ui-t-backdrop="grain"] body::before {
+	opacity: 0.9;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#{$desk}[data-ui-t-backdrop="glow"] body::before {
+	background: radial-gradient(55% 60% at 92% 0%, color-mix(in srgb, var(--ui-primary) 16%, transparent), transparent 70%);
+}
+#{$desk}[data-ui-t-backdrop="mesh"] body::before {
+	background:
+		radial-gradient(42% 55% at 88% 6%, color-mix(in srgb, var(--ui-primary) 10%, transparent), transparent 70%),
+		radial-gradient(38% 50% at 10% 96%, color-mix(in srgb, var(--ui-secondary) 9%, transparent), transparent 70%);
+}
+
+/* Through panels: the sidebar and page header turn slightly translucent so
+   the backdrop reads through them. Content cards stay opaque. */
+#{$desk}[data-ui-backdrop-through="1"] {
+	.body-sidebar {
+		background: color-mix(in srgb, var(--ui-sidebar-bg) 88%, transparent);
+		backdrop-filter: blur(8px);
+	}
+	.page-head {
+		background-color: color-mix(in srgb, var(--ui-navbar-bg) 84%, transparent);
+		backdrop-filter: blur(8px);
+	}
+}

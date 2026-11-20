@@ -1,0 +1,726 @@
+{
+	"cases": [
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Modern",
+				"preset": "Modern",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {},
+			"name": "defaults only"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "minimal",
+					"content_width": "standard",
+					"form_format": "comfortable",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "plain",
+					"workspace_format": "standard"
+				},
+				"matches": "Classic",
+				"preset": "Classic",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Minimal",
+					"content_width": "Standard",
+					"form_format": "Comfortable",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Plain",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"site_preset": "Classic"
+			},
+			"name": "site preset Classic"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "compact",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": null,
+				"preset": "Modern",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "site",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Compact",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"site_values": {
+					"form_format": "Compact"
+				}
+			},
+			"name": "site category default applies"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "full",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "collapsed",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Wide",
+				"preset": "Wide",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Full Width",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Collapsed",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"site_values": {
+					"form_format": "Compact"
+				},
+				"user_preset": "Wide"
+			},
+			"name": "user preset beats site category default"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "compact",
+					"list_format": "comfortable",
+					"navigation": "compact",
+					"page_background": "tinted",
+					"workspace_format": "compact"
+				},
+				"matches": null,
+				"preset": "Compact",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "user",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Compact",
+					"list_format": "Comfortable",
+					"navigation": "Compact",
+					"page_background": "Tinted",
+					"workspace_format": "Compact"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"user_preset": "Compact",
+				"user_values": {
+					"list_format": "Comfortable"
+				}
+			},
+			"name": "user value beats user preset"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Modern",
+				"preset": "Modern",
+				"sources": {
+					"card_style": "user",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"site_values": {
+					"card_style": "Minimal"
+				},
+				"user_values": {
+					"card_style": "Bordered"
+				}
+			},
+			"name": "user value without preset beats site value"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Modern",
+				"preset": "Modern",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": false,
+					"workspace": true
+				},
+				"user_values": {
+					"navigation": "Collapsed"
+				}
+			},
+			"name": "closed group ignores user value"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Modern",
+				"preset": "Modern",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": false,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"user_preset": "Compact"
+			},
+			"name": "closed preset group ignores user preset"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Modern",
+				"preset": "Modern",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "preset",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"site_preset": "Huge",
+				"site_values": {
+					"form_format": "Tiny"
+				},
+				"user_preset": "Nope",
+				"user_values": {
+					"navigation": "Floating"
+				}
+			},
+			"name": "invalid values are ignored"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "standard",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "standard",
+					"page_background": "plain",
+					"workspace_format": "standard"
+				},
+				"matches": null,
+				"preset": "Modern",
+				"sources": {
+					"card_style": "preset",
+					"content_width": "preset",
+					"form_format": "preset",
+					"list_format": "preset",
+					"navigation": "preset",
+					"page_background": "user",
+					"workspace_format": "preset"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Plain",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"user_values": {
+					"page_background": "Plain"
+				}
+			},
+			"name": "custom combination matches no preset"
+		},
+		{
+			"expected": {
+				"attributes": {
+					"card_style": "bordered",
+					"content_width": "full",
+					"form_format": "standard",
+					"list_format": "standard",
+					"navigation": "collapsed",
+					"page_background": "tinted",
+					"workspace_format": "standard"
+				},
+				"matches": "Wide",
+				"preset": "Modern",
+				"sources": {
+					"card_style": "user",
+					"content_width": "user",
+					"form_format": "user",
+					"list_format": "user",
+					"navigation": "user",
+					"page_background": "user",
+					"workspace_format": "user"
+				},
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Full Width",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Collapsed",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"input": {
+				"allowed": {
+					"content": true,
+					"forms": true,
+					"layout_preset": true,
+					"lists": true,
+					"navigation": true,
+					"workspace": true
+				},
+				"user_values": {
+					"card_style": "Bordered",
+					"content_width": "Full Width",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Collapsed",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			"name": "combination equal to another preset matches it"
+		}
+	],
+	"registry": {
+		"categories": [
+			{
+				"group": "navigation",
+				"key": "navigation",
+				"label": "Navigation",
+				"options": [
+					{
+						"attribute": "standard",
+						"description": "Full sidebar with icons and labels.",
+						"value": "Standard"
+					},
+					{
+						"attribute": "compact",
+						"description": "A narrower sidebar with smaller items.",
+						"value": "Compact"
+					},
+					{
+						"attribute": "collapsed",
+						"description": "The sidebar starts collapsed to icons; expand it any time.",
+						"value": "Collapsed"
+					}
+				]
+			},
+			{
+				"group": "workspace",
+				"key": "workspace_format",
+				"label": "Workspace",
+				"options": [
+					{
+						"attribute": "standard",
+						"description": "Flat cards in an even grid.",
+						"value": "Standard"
+					},
+					{
+						"attribute": "cards",
+						"description": "Raised cards with larger shortcuts.",
+						"value": "Cards"
+					},
+					{
+						"attribute": "compact",
+						"description": "Small shortcuts and tight spacing; more fits on screen.",
+						"value": "Compact"
+					},
+					{
+						"attribute": "comfortable",
+						"description": "Generous spacing between and inside cards.",
+						"value": "Comfortable"
+					}
+				]
+			},
+			{
+				"group": "forms",
+				"key": "form_format",
+				"label": "Forms",
+				"options": [
+					{
+						"attribute": "standard",
+						"description": "Field sizes follow your density setting.",
+						"value": "Standard"
+					},
+					{
+						"attribute": "compact",
+						"description": "Smaller fields and less space between them.",
+						"value": "Compact"
+					},
+					{
+						"attribute": "comfortable",
+						"description": "Taller fields and more space between sections.",
+						"value": "Comfortable"
+					}
+				]
+			},
+			{
+				"group": "lists",
+				"key": "list_format",
+				"label": "Lists and Tables",
+				"options": [
+					{
+						"attribute": "standard",
+						"description": "Row height follows your density setting.",
+						"value": "Standard"
+					},
+					{
+						"attribute": "compact",
+						"description": "Short rows; more records per screen.",
+						"value": "Compact"
+					},
+					{
+						"attribute": "comfortable",
+						"description": "Tall rows with more padding.",
+						"value": "Comfortable"
+					}
+				]
+			},
+			{
+				"group": "content",
+				"key": "content_width",
+				"label": "Content Width",
+				"options": [
+					{
+						"attribute": "standard",
+						"description": "Pages use the screen width; forms and workspaces keep a readable width.",
+						"value": "Standard"
+					},
+					{
+						"attribute": "full",
+						"description": "Everything, including forms and workspaces, uses the full width.",
+						"value": "Full Width"
+					},
+					{
+						"attribute": "contained",
+						"description": "Pages are at most 1440 px wide.",
+						"value": "Contained"
+					},
+					{
+						"attribute": "narrow",
+						"description": "Pages are at most 1120 px wide.",
+						"value": "Narrow"
+					}
+				]
+			},
+			{
+				"group": "content",
+				"key": "card_style",
+				"label": "Cards",
+				"options": [
+					{
+						"attribute": "bordered",
+						"description": "Content sits in cards with a border and a soft shadow.",
+						"value": "Bordered"
+					},
+					{
+						"attribute": "minimal",
+						"description": "Cards without border or shadow.",
+						"value": "Minimal"
+					}
+				]
+			},
+			{
+				"group": "content",
+				"key": "page_background",
+				"label": "Page Background",
+				"options": [
+					{
+						"attribute": "tinted",
+						"description": "A subtle tint behind the content cards.",
+						"value": "Tinted"
+					},
+					{
+						"attribute": "plain",
+						"description": "The page uses the card colour, like native ERPNext.",
+						"value": "Plain"
+					}
+				]
+			}
+		],
+		"default_preset": "Modern",
+		"groups": {
+			"content": "Content and Cards",
+			"forms": "Forms",
+			"layout_preset": "Layout Presets",
+			"lists": "Lists and Tables",
+			"navigation": "Navigation",
+			"workspace": "Workspace"
+		},
+		"presets": [
+			{
+				"description": "The familiar ERPNext look: white pages, full sidebar, roomy forms.",
+				"name": "Classic",
+				"values": {
+					"card_style": "Minimal",
+					"content_width": "Standard",
+					"form_format": "Comfortable",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Plain",
+					"workspace_format": "Standard"
+				}
+			},
+			{
+				"description": "Tinted page with clearly separated content cards.",
+				"name": "Modern",
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Standard",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			},
+			{
+				"description": "Narrow sidebar, smaller fields and short table rows for dense work.",
+				"name": "Compact",
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Standard",
+					"form_format": "Compact",
+					"list_format": "Compact",
+					"navigation": "Compact",
+					"page_background": "Tinted",
+					"workspace_format": "Compact"
+				}
+			},
+			{
+				"description": "Collapsed sidebar and full-width content for wide screens and big tables.",
+				"name": "Wide",
+				"values": {
+					"card_style": "Bordered",
+					"content_width": "Full Width",
+					"form_format": "Standard",
+					"list_format": "Standard",
+					"navigation": "Collapsed",
+					"page_background": "Tinted",
+					"workspace_format": "Standard"
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,201 @@
+/* Module E: forms and document views.
+ *
+ * Presentation only. Field order, sections, tabs, dependencies, mandatory
+ * and read-only rules, scripts and permissions are untouched: nothing here
+ * moves a field or changes which controls render.
+ *
+ * Structure on the page background:
+ *   form card        .form-layout (tabs, sections, child tables)
+ *   activity card    .form-footer (comments, timeline)
+ *   sidebar card     .form-sidebar (assignments, attachments, tags, shares)
+ */
+#{$desk} {
+	/* ---- Cards */
+	.std-form-layout > .form-layout {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius);
+		box-shadow: var(--ui-shadow-sm);
+	}
+	.std-form-layout > .form-layout > .form-page {
+		background-color: transparent;
+		border-radius: var(--ui-card-radius);
+	}
+	.form-footer {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius);
+		box-shadow: var(--ui-shadow-sm);
+		margin-top: var(--ui-gap-lg);
+		padding: var(--ui-card-padding);
+	}
+	.layout-side-section .form-sidebar {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius);
+		box-shadow: var(--ui-shadow-sm);
+		margin-left: var(--ui-gap-lg);
+		.sidebar-section {
+			border-color: var(--ui-border);
+		}
+		.form-sidebar-items,
+		.sidebar-menu {
+			color: var(--ui-text-secondary);
+		}
+	}
+	body[data-route^="Form/"] .layout-side-section {
+		padding-top: 0;
+		border: 0;
+	}
+
+	/* ---- Tabs */
+	.form-tabs-list {
+		background-color: var(--ui-surface);
+		border-bottom: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius) var(--ui-card-radius) 0 0;
+		.form-tabs .nav-item .nav-link {
+			color: var(--ui-text-secondary);
+			background-color: transparent;
+			font-weight: var(--ui-font-weight-medium);
+			border-bottom: 2px solid transparent;
+			padding-bottom: 8px;
+			&:hover {
+				color: var(--ui-text);
+			}
+			&.active {
+				color: var(--ui-primary-text);
+				border-bottom-color: var(--ui-primary);
+				font-weight: var(--ui-font-weight-medium);
+			}
+		}
+	}
+
+	/* ---- Sections */
+	.form-section.card-section,
+	.form-dashboard-section {
+		border-bottom-color: var(--ui-border);
+	}
+	.form-section .section-head {
+		color: var(--ui-text);
+		font-size: var(--ui-font-size-base);
+		font-weight: var(--ui-heading-weight);
+		&.collapsible:hover {
+			color: var(--ui-primary-text);
+		}
+		.collapse-indicator {
+			color: var(--ui-text-subtle);
+		}
+	}
+	.form-section .form-section-description,
+	.form-column .form-column-description {
+		color: var(--ui-text-subtle);
+	}
+	.form-column .column-label {
+		color: var(--ui-text);
+		font-weight: var(--ui-heading-weight);
+	}
+	.form-section.empty-section {
+		display: none;
+	}
+
+	/* ---- Labels, required marks, help text */
+	.frappe-control .control-label,
+	.form-group .control-label {
+		color: var(--ui-text-secondary);
+		font-size: var(--ui-font-size-sm);
+		font-weight: var(--ui-label-weight);
+		margin-bottom: 5px;
+	}
+	.frappe-control .control-label.reqd::after {
+		color: var(--ui-danger);
+	}
+	.frappe-control .help-box,
+	.frappe-control .help-box.small {
+		color: var(--ui-text-subtle);
+		font-size: var(--ui-font-size-xs);
+		line-height: var(--ui-line-height-base);
+		margin-top: var(--ui-gap-xs);
+	}
+	.frappe-control .checkbox .label-area {
+		color: var(--ui-text);
+		font-weight: var(--ui-font-weight-medium);
+	}
+
+	/* ---- Read-only values: readable text, not greyed out */
+	.frappe-control .control-value,
+	.frappe-control .like-disabled-input {
+		color: var(--ui-text);
+	}
+	.form-control:disabled,
+	.form-control[readonly] {
+		cursor: default;
+	}
+
+	/* ---- Numbers line up in currency, float and int fields */
+	.frappe-control[data-fieldtype="Currency"],
+	.frappe-control[data-fieldtype="Float"],
+	.frappe-control[data-fieldtype="Int"],
+	.frappe-control[data-fieldtype="Percent"] {
+		.form-control,
+		.control-value {
+			font-variant-numeric: tabular-nums;
+		}
+	}
+
+	/* ---- Attachments */
+	.frappe-control[data-fieldtype="Attach"],
+	.frappe-control[data-fieldtype="Attach Image"] {
+		.attached-file {
+			background-color: var(--ui-surface-muted);
+			border: var(--ui-border-width) solid var(--ui-border);
+			border-radius: var(--ui-input-radius);
+		}
+	}
+
+	/* ---- Form messages and the dashboard (Connections) */
+	.form-message {
+		border-radius: var(--ui-radius-md);
+	}
+	.form-dashboard-section .section-head,
+	.form-links .form-link-title {
+		color: var(--ui-text);
+		font-weight: var(--ui-heading-weight);
+	}
+	.form-links .document-link .badge-link {
+		color: var(--ui-text-secondary);
+	}
+	.form-links .document-link .badge-link:hover {
+		color: var(--ui-primary-text);
+	}
+
+	/* ---- Comments and timeline */
+	.comment-box .comment-input-header {
+		color: var(--ui-text);
+		font-weight: var(--ui-heading-weight);
+	}
+	.new-timeline {
+		.activity-title h4 {
+			color: var(--ui-text);
+			font-weight: var(--ui-heading-weight);
+		}
+		.timeline-dot {
+			background-color: var(--ui-surface);
+			border-color: var(--ui-border-strong);
+		}
+		.timeline-item::before,
+		&::before {
+			border-left-color: var(--ui-border);
+		}
+		.timeline-content {
+			color: var(--ui-text-secondary);
+		}
+		.timeline-message-box {
+			background-color: var(--ui-surface);
+			border: var(--ui-border-width) solid var(--ui-border);
+			border-radius: var(--ui-radius-lg);
+		}
+	}
+	.form-footer .scroll-to-top {
+		margin-top: var(--ui-gap-sm);
+	}
+}

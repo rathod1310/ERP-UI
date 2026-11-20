@@ -1,0 +1,157 @@
+/*
+ * Frappe v16 adapter: maps --ui-* design tokens onto the variables native
+ * Desk components already read. Active only while the engine has set
+ * html[data-ui-adapter="v16"] (specificity 0,1,1 beats Frappe's :root and
+ * [data-theme=dark] blocks, so no !important is needed).
+ *
+ * Coverage notes live in docs/compatibility.md. Variables not listed here keep
+ * Frappe's values, notably the indicator pill pairs (the --bg-xxx and --text-on-xxx variables),
+ * chart colours and the ink/surface greys used only by individual widgets.
+ */
+html[data-ui-adapter="v16"] {
+	color-scheme: var(--ui-color-scheme, light);
+
+	/* Typography */
+	--font-stack: var(--ui-font-family);
+	--heading-color: var(--ui-text);
+	--text-color: var(--ui-text);
+	--text-muted: var(--ui-text-secondary);
+	--text-light: var(--ui-text-muted);
+	--disabled-text-color: var(--ui-disabled-text);
+
+	/* Brand */
+	--primary: var(--ui-primary);
+	--primary-color: var(--ui-primary);
+	--brand-color: var(--ui-primary);
+	--btn-primary: var(--ui-primary);
+	--border-primary: var(--ui-primary);
+	--progress-bar-bg: var(--ui-primary);
+	--checkbox-color: var(--ui-primary);
+	--checkbox-gradient: linear-gradient(
+		180deg,
+		var(--ui-primary) -124.51%,
+		var(--ui-primary) 100%
+	);
+	--date-active-bg: var(--ui-primary);
+	--date-active-text: var(--ui-primary-contrast);
+
+	/* Surfaces. Native v16 paints page, list and form areas with --bg-color
+	   and --fg-color and assumes they are equal (both white), so both map to
+	   the surface. --ui-background (a tinted page behind cards) needs the
+	   Phase 2 layout and is not consumed here. */
+	--bg-color: var(--ui-surface);
+	--fg-color: var(--ui-surface);
+	--card-bg: var(--ui-surface);
+	--subtle-accent: var(--ui-surface-muted);
+	--subtle-fg: var(--ui-surface-muted);
+	--fg-hover-color: var(--ui-hover);
+	--highlight-color: var(--ui-hover);
+	--control-bg: var(--ui-control-bg);
+	--control-bg-on-gray: var(--ui-neutral-3);
+	--disabled-control-bg: var(--ui-disabled-bg);
+	--input-disabled-bg: var(--ui-disabled-bg);
+	--awesomebar-focus-bg: var(--ui-surface);
+	--awesomplete-hover-bg: var(--ui-hover);
+	--modal-bg: var(--ui-surface-elevated);
+	--popover-bg: var(--ui-surface-elevated);
+	--toast-bg: var(--ui-surface-elevated);
+	--navbar-bg: var(--ui-navbar-bg);
+	--sidebar-select-color: var(--ui-selected);
+	--btn-default-bg: var(--ui-control-bg);
+	--btn-default-hover-bg: var(--ui-neutral-3);
+	--btn-ghost-hover-bg: var(--ui-hover);
+	--placeholder-color: var(--ui-surface-muted);
+	--skeleton-bg: var(--ui-surface-muted);
+
+	/* Espresso (frappe-ui) surface and text scale used by the v16 sidebar,
+	   dropdowns and newer widgets. Only the semantic steps are mapped. */
+	--surface-white: var(--ui-surface);
+	--surface-cards: var(--ui-surface);
+	--surface-modal: var(--ui-surface-elevated);
+	--surface-menu-bar: var(--ui-sidebar-bg);
+	--surface-selected: var(--ui-selected);
+	--surface-gray-1: var(--ui-neutral-1);
+	--surface-gray-2: var(--ui-neutral-2);
+	--surface-gray-3: var(--ui-neutral-3);
+	--surface-gray-4: var(--ui-neutral-4);
+	--ink-gray-9: var(--ui-text);
+	--ink-gray-8: var(--ui-text);
+	--ink-gray-7: var(--ui-text-secondary);
+	--ink-gray-6: var(--ui-text-muted);
+	--ink-gray-5: var(--ui-text-muted);
+
+	/* Borders */
+	--border-color: var(--ui-border);
+	--table-border-color: var(--ui-border);
+	--dark-border-color: var(--ui-border-strong);
+	--btn-group-border-color: var(--ui-border-strong);
+	--outline-gray-1: var(--ui-border);
+	--outline-gray-2: var(--ui-border);
+	--outline-gray-3: var(--ui-border-strong);
+	--outline-gray-modals: var(--ui-border);
+
+	/* Alerts use the semantic colours */
+	--alert-text-danger: var(--ui-danger);
+	--alert-text-warning: var(--ui-warning);
+	--alert-text-info: var(--ui-info);
+	--alert-text-success: var(--ui-success);
+	--alert-bg-danger: var(--ui-danger-soft);
+	--alert-bg-warning: var(--ui-warning-soft);
+	--alert-bg-info: var(--ui-info-soft);
+	--alert-bg-success: var(--ui-success-soft);
+	--error-border: var(--ui-danger);
+
+	/* Shape, elevation, focus */
+	--border-radius-sm: var(--ui-radius-sm);
+	--border-radius: var(--ui-radius-md);
+	--border-radius-md: var(--ui-radius-lg);
+	--border-radius-lg: var(--ui-dialog-radius);
+	--shadow-xs: var(--ui-shadow-sm);
+	--shadow-sm: var(--ui-shadow-sm);
+	--shadow-base: var(--ui-shadow-md);
+	--shadow-md: var(--ui-shadow-md);
+	--shadow-lg: var(--ui-shadow-lg);
+	--card-shadow: var(--ui-shadow-sm);
+	--modal-shadow: var(--ui-shadow-lg);
+	--btn-shadow: var(--ui-shadow-sm);
+	--focus-default: var(--ui-focus-ring);
+	--checkbox-focus-shadow: var(--ui-focus-ring);
+
+	/* Density */
+	--input-height: var(--ui-input-height);
+	--btn-height: var(--ui-button-height);
+
+	/* Scrollbars */
+	--scrollbar-thumb-color: var(--ui-border-strong);
+	--scrollbar-track-color: var(--ui-surface-muted);
+}
+
+/*
+ * Scoped component rules. Each exists because the native rule hard-codes a
+ * colour the variables above cannot reach.
+ */
+
+/* Native primary buttons use --neutral (white/black by mode) for the label;
+   themes define their own readable label colour. */
+html[data-ui-adapter="v16"] .btn.btn-primary {
+	color: var(--ui-primary-contrast);
+	--icon-stroke: currentColor;
+}
+
+html[data-ui-adapter="v16"] .btn.btn-primary:hover,
+html[data-ui-adapter="v16"] .btn.btn-primary:focus-visible {
+	background-color: var(--ui-primary-hover);
+	color: var(--ui-primary-contrast);
+}
+
+html[data-ui-adapter="v16"] .btn.btn-primary:active {
+	background-color: var(--ui-primary-active);
+	color: var(--ui-primary-contrast) !important; /* native rule uses !important */
+}
+
+/* Headings follow the theme's heading weight. */
+html[data-ui-adapter="v16"] .page-title .title-text,
+html[data-ui-adapter="v16"] .modal-title,
+html[data-ui-adapter="v16"] .widget-head .widget-title {
+	font-weight: var(--ui-heading-weight);
+}

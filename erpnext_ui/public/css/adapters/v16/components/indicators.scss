@@ -1,0 +1,46 @@
+/* Module H: status indicators, badges and pills.
+ *
+ * Frappe colours status pills and dots with --bg-<colour> and
+ * --text-on-<colour>. The five colours with a fixed meaning are mapped to
+ * the theme's semantic tokens: green = success, red = danger,
+ * orange/yellow = warning, blue = info, grey = neutral. Decorative colours
+ * (cyan, pink, purple, light-blue) keep Frappe's palette. */
+#{$desk} {
+	--ui-on-success: color-mix(in srgb, var(--ui-success) 78%, var(--ui-text));
+	--ui-on-danger: color-mix(in srgb, var(--ui-danger) 78%, var(--ui-text));
+	--ui-on-warning: color-mix(in srgb, var(--ui-warning) 78%, var(--ui-text));
+	--ui-on-info: color-mix(in srgb, var(--ui-info) 78%, var(--ui-text));
+
+	--bg-green: var(--ui-success-soft);
+	--text-on-green: var(--ui-on-success);
+	--bg-red: var(--ui-danger-soft);
+	--text-on-red: var(--ui-on-danger);
+	--bg-orange: var(--ui-warning-soft);
+	--text-on-orange: var(--ui-on-warning);
+	--bg-yellow: var(--ui-warning-soft);
+	--text-on-yellow: var(--ui-on-warning);
+	--bg-blue: var(--ui-info-soft);
+	--text-on-blue: var(--ui-on-info);
+	--bg-gray: var(--ui-neutral-2);
+	--text-on-gray: var(--ui-text-secondary);
+	--bg-grey: var(--ui-neutral-2);
+	--text-on-grey: var(--ui-text-secondary);
+	--bg-darkgrey: var(--ui-neutral-3);
+	--text-on-darkgrey: var(--ui-text);
+
+	.indicator-pill,
+	.indicator-pill-right {
+		font-weight: var(--ui-font-weight-medium);
+		font-size: var(--ui-font-size-xs);
+	}
+
+	.badge {
+		font-weight: var(--ui-font-weight-medium);
+		border-radius: var(--ui-radius-sm);
+	}
+	.badge-light,
+	.badge-secondary {
+		background-color: var(--ui-neutral-2);
+		color: var(--ui-text-secondary);
+	}
+}

@@ -4,7 +4,7 @@ authors = [
     { name = "Skydot Infotech", email = "skydotinfotech@gmail.com"}
 ]
 description = "Professional design system, theme engine and UI experience layer for Frappe/ERPNext Desk"
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
@@ -25,7 +25,7 @@ packages = []
 
 [tool.ruff]
 line-length = 110
-target-version = "py314"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = [

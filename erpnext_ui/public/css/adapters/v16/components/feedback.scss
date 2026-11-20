@@ -1,0 +1,43 @@
+/* Module H: empty states, loading skeletons and cards. */
+#{$desk} {
+	/* ---- Empty states (lists, reports, grids) */
+	.no-result,
+	.msg-box.no-border {
+		color: var(--ui-text-secondary);
+		.no-result-text,
+		p {
+			color: var(--ui-text-secondary);
+		}
+		svg,
+		.icon {
+			--icon-stroke: var(--ui-text-muted);
+		}
+		.btn {
+			margin-top: var(--ui-gap-sm);
+		}
+	}
+
+	/* ---- Loading skeletons */
+	.freeze-row .list-row-col,
+	.list-loading .list-row-col,
+	.skeleton-card,
+	.workspace-skeleton .widget-group-title,
+	.workspace-skeleton .skeleton-card {
+		background-color: var(--ui-neutral-3);
+	}
+	#freeze {
+		background-color: var(--ui-background);
+	}
+
+	/* ---- Generic cards */
+	.frappe-card {
+		background-color: var(--ui-surface);
+		border: var(--ui-border-width) solid var(--ui-border);
+		border-radius: var(--ui-card-radius);
+		box-shadow: var(--ui-shadow-sm);
+	}
+	.layout-main-section.frappe-card {
+		box-shadow: var(--ui-shadow-sm);
+		border: var(--ui-border-width) solid var(--ui-border);
+	}
+}

@@ -1,0 +1,120 @@
+/* Module H: buttons and inputs.
+ *
+ * Buttons: primary (filled), secondary/default (outlined with an inset ring,
+ * so widths do not change), tertiary (ghost/link), destructive, disabled.
+ * Inputs: editable fields are bordered surfaces; read-only values are muted
+ * fills without a border, so the two can be told apart at a glance. */
+#{$desk} {
+	/* ---- Buttons */
+	.btn {
+		font-weight: var(--ui-font-weight-medium);
+		transition: background-color 0.12s ease, box-shadow 0.12s ease, color 0.12s ease;
+	}
+	.btn.btn-default,
+	.btn.btn-secondary {
+		background-color: var(--ui-surface);
+		color: var(--ui-text);
+		box-shadow: inset 0 0 0 var(--ui-border-width) var(--ui-border-strong);
+		&:hover {
+			background-color: var(--ui-hover);
+			color: var(--ui-text);
+		}
+		&:focus-visible {
+			box-shadow: inset 0 0 0 var(--ui-border-width) var(--ui-focus), var(--ui-focus-ring) !important; /* native :focus-visible uses !important */
+		}
+		&.btn-paging.btn-info,
+		&.active {
+			background-color: var(--ui-selected);
+			color: var(--ui-primary-text);
+		}
+	}
+	.btn.btn-primary {
+		box-shadow: none;
+		&:focus-visible {
+			box-shadow: var(--ui-focus-ring);
+		}
+	}
+	.btn.btn-ghost,
+	.btn.btn-link {
+		color: var(--ui-text-secondary);
+		&:hover {
+			color: var(--ui-text);
+			background-color: var(--ui-hover);
+			text-decoration: none;
+		}
+	}
+	.btn.btn-danger {
+		background-color: var(--ui-danger);
+		color: #ffffff;
+		&:hover {
+			background-color: color-mix(in srgb, var(--ui-danger) 88%, var(--ui-text));
+		}
+	}
+	&[data-ui-mode="dark"] .btn.btn-danger {
+		color: var(--ui-background);
+	}
+	.btn:disabled,
+	.btn.disabled {
+		opacity: 0.55;
+		cursor: not-allowed;
+	}
+
+	/* ---- Inputs in forms, dialogs and filter bars */
+	.frappe-control .form-control,
+	.page-form .form-control,
+	.modal .form-control {
+		background-color: var(--ui-surface);
+		color: var(--ui-text);
+		border: var(--ui-border-width) solid var(--ui-border-strong);
+		border-radius: var(--ui-input-radius);
+		box-shadow: none;
+		transition: border-color 0.12s ease, box-shadow 0.12s ease;
+		&::placeholder {
+			color: var(--ui-text-subtle);
+		}
+		&:hover {
+			border-color: color-mix(in srgb, var(--ui-border-strong) 70%, var(--ui-text));
+		}
+		&:focus {
+			background-color: var(--ui-surface);
+			border-color: var(--ui-focus);
+			box-shadow: var(--ui-focus-ring);
+		}
+		&:disabled,
+		&[readonly] {
+			background-color: var(--ui-disabled-bg);
+			border-color: transparent;
+			color: var(--ui-text-secondary);
+		}
+	}
+	/* Invalid: Frappe marks a control with .has-error. */
+	.frappe-control.has-error .form-control,
+	.has-error .form-control {
+		border-color: var(--ui-danger);
+		&:focus {
+			box-shadow: 0 0 0 2px color-mix(in srgb, var(--ui-danger) 35%, transparent);
+		}
+	}
+
+	/* Read-only values (read-only fields, submitted documents). */
+	.frappe-control .like-disabled-input,
+	.frappe-control .control-value.like-disabled-input {
+		background-color: var(--ui-surface-muted);
+		color: var(--ui-text);
+		font-weight: var(--ui-font-weight-regular);
+		border: var(--ui-border-width) solid transparent;
+		border-radius: var(--ui-input-radius);
+		/* Fields marked "Bold" in the DocType stay bold. */
+		&.bold {
+			font-weight: var(--ui-font-weight-semibold);
+		}
+	}
+
+	/* Checkboxes */
+	input[type="checkbox"] {
+		border-color: var(--ui-border-strong);
+		&:focus-visible {
+			box-shadow: var(--ui-focus-ring);
+		}
+	}
+}
