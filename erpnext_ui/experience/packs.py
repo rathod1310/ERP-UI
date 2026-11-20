@@ -13,12 +13,12 @@ and migrate, the same way theme/presets.py is synced into UI Theme.
 
 # component -> variants. The first variant is the neutral fallback.
 COMPONENTS: dict[str, tuple[str, ...]] = {
-	"nav": ("structured", "floating", "app-rail", "executive", "department", "icon-rail"),
-	"header": ("classic", "command", "search", "management", "department-tabs", "none"),
+	"nav": ("structured", "floating", "app-rail", "executive", "department", "icon-rail", "signature"),
+	"header": ("classic", "command", "search", "management", "department-tabs", "none", "brand"),
 	"launcher": ("none", "popover", "full"),
-	"home": ("workspace", "dashboard", "hub", "overview", "department", "minimal"),
-	"form": ("bands", "facts", "standard", "summary", "next-step", "hairline"),
-	"list": ("lined", "card-table", "status-tabs", "data-summary", "my-work", "hairline"),
+	"home": ("workspace", "dashboard", "hub", "overview", "department", "minimal", "signature"),
+	"form": ("bands", "facts", "standard", "summary", "next-step", "hairline", "elevated"),
+	"list": ("lined", "card-table", "status-tabs", "data-summary", "my-work", "hairline", "elevated"),
 	"report": ("traditional", "analytic", "plain"),
 }
 COMPONENT_KEYS = tuple(COMPONENTS)
@@ -28,7 +28,7 @@ COMPONENT_KEYS = tuple(COMPONENTS)
 # groups, permission-filtered by frappe.desk.desktop.get_desktop_page) in
 # their own layouts; the others add their own data. On v16 the native home is
 # the Desktop app grid, which every pack would otherwise share.
-CUSTOM_HOMES = ("workspace", "dashboard", "hub", "overview", "department", "minimal")
+CUSTOM_HOMES = ("workspace", "dashboard", "hub", "overview", "department", "minimal", "signature")
 HOME_PAGE = "ui-home"
 
 # Keys a user may adjust on top of a pack (each still needs the site's
@@ -49,6 +49,38 @@ OVERRIDE_KEYS = (*THEME_OVERRIDE_KEYS, *LAYOUT_OVERRIDE_KEYS)
 DEFAULT_EXPERIENCE = "classic-business"
 
 PACKS: dict[str, dict] = {
+	"signature-enterprise": {
+		"title": "Signature Enterprise",
+		"sort_order": 5,
+		"description": "A premium, fully branded light workspace: clean navigation, a command-centre home and elevated forms and lists.",
+		"audience": "Companies that want a polished, white-label business suite their clients and staff recognise as their own.",
+		"light_theme": "Skyline",
+		"dark_theme": "Skyline Dark",
+		"compatible_themes": ("Corporate Blue", "Modern Office"),
+		"shell": {
+			"nav": "signature",
+			"header": "brand",
+			"launcher": "popover",
+			"home": "signature",
+			"form": "elevated",
+			"list": "elevated",
+			"report": "analytic",
+		},
+		"density": "Comfortable",
+		"font": "Inter",
+		"layout": {
+			"navigation": "Standard",
+			"workspace_format": "Cards",
+			"form_format": "Comfortable",
+			"list_format": "Comfortable",
+			"content_width": "Standard",
+			"card_style": "Bordered",
+			"page_background": "Tinted",
+		},
+		"login": "Split",
+		"home_cards": ("Total Sales Amount", "Total Purchase Amount", "Total Incoming Payment", "Total Stock Value"),
+		"home_charts": ("Outgoing Bills (Sales Invoice)",),
+	},
 	"classic-business": {
 		"title": "Classic Business",
 		"sort_order": 10,
@@ -85,7 +117,7 @@ PACKS: dict[str, dict] = {
 		"title": "Modern Business",
 		"sort_order": 20,
 		"description": "A contemporary enterprise SaaS interface: floating navigation, a modular dashboard home and soft cards.",
-		"audience": "Organisations that want ERPNext to feel like a current SaaS product.",
+		"audience": "Organisations that want SKYDOTERP to feel like a current SaaS product.",
 		"light_theme": "Modern Office",
 		"dark_theme": "Modern Office Dark",
 		"compatible_themes": ("Corporate Blue", "Slate Professional"),

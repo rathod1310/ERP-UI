@@ -124,7 +124,7 @@ class UIPreferencesPage {
 		this.$body.html(`
 			<div class="eui-xp-intro">
 				<div>
-					<h4 class="eui-section-title">${__("Choose your ERPNext experience")}</h4>
+					<h4 class="eui-section-title">${__("Choose your SKYDOTERP experience")}</h4>
 					<p>${__(
 						"Each experience sets the navigation, home page, forms, lists, reports, colours and density together. Look inside one, preview it on every page, then apply it. Nothing is saved until you choose Apply to Me."
 					)}</p>

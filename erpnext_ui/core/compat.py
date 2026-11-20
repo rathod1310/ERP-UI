@@ -8,7 +8,10 @@ left untouched (see docs/compatibility.md).
 import frappe
 
 # Frappe major version -> adapter key understood by public/js/adapters.
-ADAPTERS = {16: "v16"}
+# v17 keeps the v16 Desk structure (body-sidebar, page-head, layout-main
+# section, datatable), so it runs the same adapter; the few differences are
+# keyed on html[data-ui-frappe="17"].
+ADAPTERS = {16: "v16", 17: "v16"}
 
 # The exact versions the current release was tested against.
 TESTED = {"frappe": "16.34.0", "erpnext": "16.35.0"}
@@ -42,6 +45,7 @@ def status() -> dict:
 	return {
 		"versions": versions,
 		"adapter": key,
+		"frappe_major": _major(versions["frappe"]),
 		"supported": bool(key),
 		"tested": TESTED,
 		"exact_tested_match": versions["frappe"] == TESTED["frappe"]

@@ -172,6 +172,28 @@ test("Frappe's launcher route leads to the experience home only while that home 
 	assert.deepEqual(homeCalls, ["home"]);
 });
 
+test("Frappe's apps screen leads home too, except once after All apps", () => {
+	const { experience, homeCalls } = makeEngines();
+	experience.preview("application-hub");
+	assert.equal(experience.onRouteChange(["desktop"]), true, "Back or Home onto the apps screen goes home");
+	experience.allowLauncherOnce();
+	assert.equal(experience.onRouteChange(["desktop"]), false, "All apps shows the apps screen");
+	assert.equal(experience.onRouteChange(["desktop"]), true, "the pass is used up");
+	experience.allowLauncherOnce();
+	experience.launcherPass -= 60000;
+	assert.equal(experience.onRouteChange(["workspace"]), true, "an old pass has expired");
+	assert.deepEqual(homeCalls, ["home", "home", "home"]);
+});
+
+test("All apps opens the experience's apps page, or the launcher without it", () => {
+	const { experience } = makeEngines();
+	experience.update(experiencePayload({ key: "application-hub", apps_page: "ui-apps" }));
+	assert.equal(experience.allAppsRoute(), "ui-apps");
+	experience.update(experiencePayload({ key: "application-hub" }));
+	assert.equal(experience.allAppsRoute(), "desktop");
+	assert.equal(experience.onRouteChange(["desktop"]), false, "the launcher is let through once");
+});
+
 test("without the ui-home page (site not migrated) the native home is kept", () => {
 	const { experience, boot } = makeEngines();
 	experience.update(experiencePayload({ key: "application-hub", home_available: 0 }));

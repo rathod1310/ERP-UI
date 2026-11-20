@@ -74,7 +74,7 @@ CATEGORIES: dict[str, dict] = {
 		"group": "content",
 		"options": (
 			("Tinted", "tinted", "A subtle tint behind the content cards."),
-			("Plain", "plain", "The page uses the card colour, like native ERPNext."),
+			("Plain", "plain", "The page uses the card colour, like the native desk."),
 		),
 	},
 }
@@ -93,7 +93,7 @@ GROUPS = {
 
 PRESETS: dict[str, dict] = {
 	"Classic": {
-		"description": "The familiar ERPNext look: white pages, full sidebar, roomy forms.",
+		"description": "The familiar classic look: white pages, full sidebar, roomy forms.",
 		"values": {
 			"navigation": "Standard",
 			"workspace_format": "Standard",

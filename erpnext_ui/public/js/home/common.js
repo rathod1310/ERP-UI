@@ -24,6 +24,7 @@ export function listRoute(doctype) {
 }
 
 export function workspaceRoute(page) {
+	if (page && page._href) return page._href;
 	const slug = frappe.router.slug(page.name || page.title);
 	return page.public === 0 ? `/desk/private/${slug}` : `/desk/${slug}`;
 }
@@ -276,4 +277,35 @@ export function approvalRows(rows) {
 			)}</small></a></li>`
 		)
 		.join("")}</ul>`;
+}
+
+/**
+ * The areas a user can open from a home. v16 boots the workspace list
+ * (frappe.boot.workspaces); v17 replaced it with module sidebars, each
+ * opened at its own landing route.
+ */
+export function navigableWorkspaces() {
+	const legacy = frappe.boot.workspaces && frappe.boot.workspaces.pages;
+	if (Array.isArray(legacy)) return legacy.filter((p) => p && !p.parent_page && p.is_hidden !== 1);
+	const shells = frappe.boot.module_sidebars || {};
+	const sidebar = frappe.app && frappe.app.sidebar;
+	return Object.entries(shells)
+		.map(([key, s]) => {
+			let href = null;
+			try {
+				href = sidebar && typeof sidebar.module_landing_route === "function" ? sidebar.module_landing_route(key) : null;
+			} catch (e) {
+				href = null;
+			}
+			let iconName = s && s.header_icon;
+			if (!iconName && typeof frappe.get_module_icon === "function") {
+				try {
+					iconName = frappe.get_module_icon(key);
+				} catch (e) {
+					iconName = null;
+				}
+			}
+			return { name: key, title: (s && s.label) || key, icon: iconName || "folder-normal", public: 1, _href: href };
+		})
+		.filter((p) => p._href && p._href.startsWith("/desk/"));
 }

@@ -653,7 +653,7 @@
 					},
 					{
 						"attribute": "plain",
-						"description": "The page uses the card colour, like native ERPNext.",
+						"description": "The page uses the card colour, like the native desk.",
 						"value": "Plain"
 					}
 				]
@@ -670,7 +670,7 @@
 		},
 		"presets": [
 			{
-				"description": "The familiar ERPNext look: white pages, full sidebar, roomy forms.",
+				"description": "The familiar classic look: white pages, full sidebar, roomy forms.",
 				"name": "Classic",
 				"values": {
 					"card_style": "Minimal",

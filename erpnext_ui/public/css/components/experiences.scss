@@ -890,3 +890,53 @@
 .eui-sk[data-header="none"] .sk-main {
 	padding-top: 18px;
 }
+
+/* Signature Enterprise variants */
+.eui-sk .sk-side.sk-sig {
+	background: linear-gradient(180deg, var(--sk-side) 0%, color-mix(in srgb, var(--sk-side) 86%, var(--sk-primary)) 100%);
+}
+.eui-sk .sk-side.sk-sig .sk-item.on {
+	box-shadow: inset 3px 0 0 var(--sk-secondary);
+}
+.eui-sk .sk-brand b.sig {
+	background: var(--sk-secondary);
+	border-radius: 50%;
+}
+.eui-sk .sk-pill-search.dark {
+	border-color: var(--sk-border);
+	background: var(--sk-surface);
+}
+.eui-sk .sk-top-brand {
+	border-bottom: 1px solid var(--sk-border);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+.eui-sk .sk-sig-hero {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 64px;
+	padding: 12px 14px;
+	border-radius: calc(var(--sk-radius) + 2px);
+	color: var(--sk-text);
+	border: 1px solid var(--sk-border);
+	background: linear-gradient(115deg, var(--sk-surface) 0%, color-mix(in srgb, var(--sk-primary) 12%, var(--sk-surface)) 100%);
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.eui-sk .sk-sig-hero > .sk-bar {
+	flex-basis: 100%;
+	max-width: 40%;
+}
+.eui-sk .sk-sig-actions {
+	display: flex;
+	gap: 6px;
+	margin-left: auto;
+}
+.eui-sk .sk-sig-hero .sk-btn.pri {
+	background: var(--sk-secondary);
+	border-color: var(--sk-secondary);
+}
+.eui-sk .sk-card.elevated,
+.eui-sk .sk-card.sk-elevated {
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px -12px rgba(16, 24, 40, 0.25);
+}

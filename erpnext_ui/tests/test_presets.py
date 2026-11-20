@@ -42,6 +42,7 @@ class TestPresets(TestCase):
 				"Modern Office",
 				"Operations Teal",
 				"Mono Ink",
+				"Skyline",
 				"Corporate Blue Dark",
 				"Slate Professional Dark",
 				"Executive Green Dark",
@@ -49,6 +50,7 @@ class TestPresets(TestCase):
 				"Modern Office Dark",
 				"Operations Teal Dark",
 				"Mono Ink Dark",
+				"Skyline Dark",
 			],
 		)
 		self.assertEqual(PRESETS[FALLBACK_LIGHT]["mode"], "Light")

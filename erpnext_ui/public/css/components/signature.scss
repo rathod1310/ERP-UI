@@ -1,0 +1,273 @@
+/*
+ * Signature Enterprise: the shell variants nav="signature", header="brand",
+ * home="signature", form="elevated" and list="elevated". Rules key on the
+ * component attributes (never on the pack name), so any pack can reuse a
+ * variant. Colours come from the theme tokens only; the accent is the
+ * theme's secondary colour (the brand orange in Skyline).
+ */
+$sig: 'html[data-ui-adapter="v16"][data-ui-layout="enhanced"]';
+
+/* ---------------------------------------------------------- navigation */
+#{$sig}[data-ui-shell-nav="signature"] {
+	.body-sidebar {
+		background: linear-gradient(
+			180deg,
+			var(--ui-sidebar-bg) 0%,
+			color-mix(in srgb, var(--ui-sidebar-bg) 94%, var(--ui-primary)) 100%
+		);
+	}
+	.body-sidebar .sidebar-header {
+		padding-block: 6px;
+		.header-logo img,
+		.header-logo svg {
+			border-radius: 8px;
+		}
+		.header-title {
+			letter-spacing: 0.01em;
+		}
+	}
+	.body-sidebar .standard-sidebar-item {
+		position: relative;
+	}
+	.body-sidebar .standard-sidebar-item.active-sidebar {
+		background: color-mix(in srgb, var(--ui-sidebar-active-bg) 92%, var(--ui-primary));
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 7px;
+			bottom: 7px;
+			width: 3px;
+			border-radius: 0 3px 3px 0;
+			background: var(--ui-secondary);
+		}
+		.sidebar-item-label {
+			font-weight: var(--ui-font-weight-semibold);
+		}
+	}
+	.body-sidebar .section-break {
+		opacity: 0.7;
+		letter-spacing: 0.06em;
+	}
+}
+
+/* ---------------------------------------------------------- header */
+#{$sig}[data-ui-shell-header="brand"] {
+	.page-head {
+		box-shadow: 0 1px 0 var(--ui-border), 0 6px 16px -14px rgba(16, 24, 40, 0.35);
+		border-bottom-color: transparent;
+	}
+	.page-head .page-title .title-text {
+		font-weight: var(--ui-heading-weight, 600);
+		letter-spacing: -0.01em;
+	}
+	.page-head .btn-primary {
+		box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12), 0 4px 10px -6px var(--ui-primary);
+	}
+}
+
+/* ---------------------------------------------------------- forms */
+#{$sig}[data-ui-shell-form="elevated"] {
+	.form-page .form-layout,
+	.std-form-layout > .form-layout {
+		border-color: transparent;
+		box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 32px -18px rgba(16, 24, 40, 0.28);
+	}
+	.form-tabs-list .form-tabs .nav-item .nav-link.active {
+		color: var(--ui-primary);
+		border-bottom-color: var(--ui-primary);
+	}
+	.form-section .section-head {
+		font-size: var(--ui-font-size-xs, 12px);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--ui-text-secondary);
+	}
+	.form-section .section-head::before {
+		content: "";
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		margin-right: 8px;
+		border-radius: 50%;
+		background: var(--ui-secondary);
+		vertical-align: middle;
+	}
+	.form-dashboard-section .section-head::before {
+		content: none;
+	}
+}
+
+/* ---------------------------------------------------------- lists */
+#{$sig}[data-ui-shell-list="elevated"] {
+	.frappe-list {
+		border-color: transparent;
+		box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 12px 32px -18px rgba(16, 24, 40, 0.28);
+	}
+	.list-row-head {
+		font-size: var(--ui-font-size-xs, 12px);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--ui-text-muted);
+	}
+	.frappe-list .list-row-container .list-row:hover {
+		background-color: color-mix(in srgb, var(--ui-primary) 5%, var(--ui-surface));
+	}
+}
+
+/* ---------------------------------------------------------- home */
+.eui-home[data-design="signature"] {
+	gap: 18px;
+}
+.eui-sig-hero {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px 28px;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 26px 28px;
+	border: 1px solid color-mix(in srgb, var(--h-primary) 14%, var(--h-border));
+	border-radius: calc(var(--h-radius) + 4px);
+	color: var(--h-text);
+	background:
+		radial-gradient(90% 140% at 100% 0%, color-mix(in srgb, var(--ui-secondary, #c76200) 9%, transparent) 0%, transparent 60%),
+		linear-gradient(120deg, var(--h-surface) 0%, color-mix(in srgb, var(--h-primary) 9%, var(--h-surface)) 100%);
+	box-shadow: 0 14px 34px -28px rgba(22, 96, 201, 0.55);
+}
+.eui-sig-hero-text {
+	position: relative;
+	z-index: 1;
+	max-width: 60ch;
+}
+.eui-sig-hero p {
+	margin: 6px 0 0;
+	color: var(--ui-text-secondary, var(--h-muted));
+	font-size: var(--ui-font-size-base, 14px);
+}
+.eui-home .eui-sig-hero h2 {
+	font-size: 26px;
+	letter-spacing: -0.01em;
+}
+.eui-sig-hero-side {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 12px;
+}
+.eui-sig-search {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: min(100%, 380px);
+	padding: 9px 12px;
+	border: 1px solid var(--h-border);
+	border-radius: 10px;
+	background: var(--h-surface);
+	color: var(--h-muted);
+	font-size: var(--ui-font-size-sm, 13px);
+	cursor: pointer;
+	box-shadow: var(--ui-shadow-sm, none);
+	--icon-stroke: currentColor;
+}
+.eui-sig-search:hover {
+	border-color: color-mix(in srgb, var(--h-primary) 40%, var(--h-border));
+}
+.eui-sig-search span {
+	flex: 1;
+	text-align: left;
+}
+.eui-sig-search kbd {
+	background: var(--ui-surface-muted, #f6f8fb);
+	color: var(--h-muted);
+	border: 1px solid var(--h-border);
+	border-radius: 5px;
+	padding: 1px 6px;
+	font-size: 11px;
+	box-shadow: none;
+}
+.eui-sig-hero-mark {
+	position: absolute;
+	right: -14px;
+	bottom: -30px;
+	width: 160px;
+	opacity: 0.12;
+	pointer-events: none;
+}
+.eui-sig-kpis .number-widget-box,
+.eui-sig-kpis > * {
+	position: relative;
+}
+.eui-sig-count {
+	min-width: 22px;
+	padding: 1px 8px;
+	border-radius: 11px;
+	background: color-mix(in srgb, var(--ui-secondary, #c76200) 14%, var(--h-surface));
+	color: var(--ui-secondary, #c76200);
+	font-weight: var(--ui-font-weight-semibold, 600);
+	font-size: var(--ui-font-size-xs, 12px);
+	text-align: center;
+}
+.eui-sig-apps > header small {
+	font-size: var(--ui-font-size-xs, 12px);
+}
+.eui-sig-app-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 8px;
+	padding: 6px 16px 16px;
+}
+.eui-sig-app {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	border: 1px solid var(--h-border);
+	border-radius: var(--h-radius);
+	color: var(--h-text);
+	font-size: var(--ui-font-size-sm, 13px);
+	font-weight: var(--ui-font-weight-medium, 500);
+	text-decoration: none;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.eui-sig-app:hover {
+	color: var(--h-text);
+	text-decoration: none;
+	border-color: color-mix(in srgb, var(--h-primary) 45%, var(--h-border));
+	box-shadow: 0 6px 16px -12px rgba(16, 24, 40, 0.45);
+	transform: translateY(-1px);
+}
+.eui-sig-app-icon {
+	display: inline-grid;
+	place-items: center;
+	flex: none;
+	width: 32px;
+	height: 32px;
+	border-radius: 9px;
+	background: color-mix(in srgb, var(--h-primary) 10%, var(--h-surface));
+	color: var(--h-primary);
+	--icon-stroke: currentColor;
+}
+@media (max-width: 767px) {
+	.eui-sig-hero {
+		padding: 20px;
+	}
+	.eui-sig-hero-side {
+		align-items: stretch;
+		width: 100%;
+	}
+	.eui-sig-search {
+		min-width: 0;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.eui-sig-app {
+		transition: none;
+	}
+	.eui-sig-app:hover {
+		transform: none;
+	}
+}

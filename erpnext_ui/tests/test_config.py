@@ -78,11 +78,13 @@ class TestCompatibility(UITestCase):
 		self.assertEqual(compat.adapter_key("16.34.0"), "v16")
 		self.assertEqual(compat.adapter_key("16.0.0-dev"), "v16")
 		self.assertIsNone(compat.adapter_key("15.80.0"))
-		self.assertIsNone(compat.adapter_key("17.0.0"))
+		self.assertEqual(compat.adapter_key("17.0.0"), "v16")
+		self.assertEqual(compat.adapter_key("17.0.0-dev"), "v16")
+		self.assertIsNone(compat.adapter_key("18.0.0"))
 		self.assertIsNone(compat.adapter_key("garbage"))
 
 	def test_unsupported_version_disables_adapter(self):
-		with patch("erpnext_ui.core.compat.frappe.__version__", "17.0.0"):
+		with patch("erpnext_ui.core.compat.frappe.__version__", "18.0.0"):
 			config = build_config()
 		self.assertIsNone(config["adapter"])
 

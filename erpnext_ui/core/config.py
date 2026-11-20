@@ -31,6 +31,7 @@ def _base(settings) -> dict:
 		"app_version": __version__,
 		"enabled": settings.enabled,
 		"adapter": info["adapter"],
+		"frappe_major": info["frappe_major"],
 		"versions": info["versions"],
 		"debug": settings.debug_logging,
 	}
@@ -164,6 +165,7 @@ def build_experience(settings, catalog: list, stored: dict) -> dict:
 		"custom_home": pack["custom_home"],
 		"home_page": packs.HOME_PAGE if pack["custom_home"] and home_ready else None,
 		"home_available": int(home_ready),
+		"apps_page": experience.APPS_PAGE if experience.apps_page_ready() else None,
 		"site_default": settings.default_experience if settings.default_experience in packs_catalog else key,
 		"allow_user_experience": int(may_choose),
 		"theme_open": int(bool(settings.allow_user_selection)),

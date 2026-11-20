@@ -3,6 +3,7 @@
 // window.erpnext_ui.home = { mount, refresh }.
 
 import { render, savedDepartment } from "./home/designs.js";
+import { mountApps } from "./home/apps.js";
 
 const API = "erpnext_ui.api.home.get_home";
 
@@ -43,4 +44,4 @@ function refresh(state) {
 }
 
 window.erpnext_ui = window.erpnext_ui || {};
-window.erpnext_ui.home = { mount, refresh };
+window.erpnext_ui.home = { mount, refresh, mountApps };

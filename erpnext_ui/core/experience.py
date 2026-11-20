@@ -101,9 +101,27 @@ def home_page_ready() -> bool:
 	return ready
 
 
+APPS_PAGE = "ui-apps"
+APPS_READY_KEY = "erpnext_ui:apps-page-ready"
+
+
+def apps_page_ready() -> bool:
+	"""Whether this site has the ui-apps Desk Page (created by migrate)."""
+	cached = frappe.cache.get_value(APPS_READY_KEY)
+	if cached is not None:
+		return bool(cached)
+	try:
+		ready = bool(frappe.db.exists("Page", APPS_PAGE))
+	except Exception:
+		ready = False
+	frappe.cache.set_value(APPS_READY_KEY, int(ready), expires_in_sec=600)
+	return ready
+
+
 def clear_cache():
 	frappe.cache.delete_value(CACHE_KEY)
 	frappe.cache.delete_value(HOME_READY_KEY)
+	frappe.cache.delete_value(APPS_READY_KEY)
 
 
 def allowed_list(settings) -> list[str]:

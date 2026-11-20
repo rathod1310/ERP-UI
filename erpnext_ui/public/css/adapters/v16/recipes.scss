@@ -41,6 +41,13 @@
 			margin: var(--ui-sidebar-inset) 0 var(--ui-sidebar-inset) var(--ui-sidebar-inset);
 		}
 	}
+	/* v17 keeps the sidebar in the page flow (no fixed sidebar and no
+	   placeholder), so the inset is a margin rather than an offset. */
+	#{$desk}[data-ui-frappe="17"][data-ui-t-sidebar="floating"] .body-sidebar-container .body-sidebar {
+		top: 0;
+		left: 0;
+		margin: var(--ui-sidebar-inset) 0 var(--ui-sidebar-inset) var(--ui-sidebar-inset);
+	}
 }
 
 /* ---------------------------------------------------------- page header */

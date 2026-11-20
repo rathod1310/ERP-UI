@@ -1,7 +1,7 @@
 app_name = "erpnext_ui"
-app_title = "ERPNext UI"
+app_title = "SKYDOTERP UI"
 app_publisher = "Skydot Infotech"
-app_description = "Professional design system, theme engine and UI experience layer for Frappe/ERPNext Desk"
+app_description = "Professional design system, theme engine and UI experience layer for SKYDOTERP Desk"
 app_email = "skydotinfotech@gmail.com"
 app_license = "mit"
 

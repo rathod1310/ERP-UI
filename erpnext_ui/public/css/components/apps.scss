@@ -1,0 +1,217 @@
+/*
+ * The "All apps" page (ui-apps). Theme tokens only, so it follows whichever
+ * experience and theme is active.
+ */
+[data-page-route="ui-apps"] .layout-main-section,
+html[data-ui-adapter="v16"][data-ui-layout="enhanced"] [data-page-route="ui-apps"] .layout-main-section {
+	padding: 0;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+}
+
+.eui-apps {
+	gap: 22px;
+}
+.eui-apps-head {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px 24px;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 24px 26px;
+	border: 1px solid color-mix(in srgb, var(--h-primary) 14%, var(--h-border));
+	border-radius: calc(var(--h-radius) + 4px);
+	background:
+		radial-gradient(90% 140% at 100% 0%, color-mix(in srgb, var(--ui-secondary, #c76200) 8%, transparent) 0%, transparent 60%),
+		linear-gradient(120deg, var(--h-surface) 0%, color-mix(in srgb, var(--h-primary) 8%, var(--h-surface)) 100%);
+}
+.eui-apps-head small {
+	font-size: var(--ui-font-size-xs, 12px);
+	font-weight: var(--ui-font-weight-semibold, 600);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--h-primary);
+}
+.eui-apps-head p {
+	margin: 4px 0 0;
+	color: var(--h-muted);
+	font-size: var(--ui-font-size-sm, 13px);
+}
+.eui-apps-filter {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: min(100%, 360px);
+	margin: 0;
+	padding: 0 12px;
+	border: 1px solid var(--h-border);
+	border-radius: 10px;
+	background: var(--h-surface);
+	color: var(--h-muted);
+	box-shadow: var(--ui-shadow-sm, none);
+	--icon-stroke: currentColor;
+}
+.eui-apps-filter:focus-within {
+	border-color: var(--h-primary);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--h-primary) 18%, transparent);
+}
+.eui-apps-filter input {
+	flex: 1;
+	min-width: 0;
+	height: 38px;
+	border: 0;
+	outline: none;
+	background: transparent;
+	color: var(--h-text);
+	font-size: var(--ui-font-size-sm, 13px);
+}
+
+.eui-apps-section {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.eui-apps-section[hidden],
+.eui-apps [data-eui-find][hidden] {
+	display: none !important;
+}
+.eui-home .eui-apps-label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: var(--ui-font-size-xs, 12px);
+	font-weight: var(--ui-font-weight-semibold, 600);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ui-text-secondary, var(--h-muted));
+}
+.eui-apps-label img {
+	width: 18px;
+	height: 18px;
+	object-fit: contain;
+}
+.eui-apps-label span {
+	padding: 0 7px;
+	border-radius: 9px;
+	background: color-mix(in srgb, var(--h-primary) 10%, var(--h-surface));
+	color: var(--h-primary);
+	letter-spacing: 0;
+}
+
+.eui-apps-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 12px;
+}
+.eui-apps-card {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 16px;
+	border: 1px solid var(--h-border);
+	border-radius: calc(var(--h-radius) + 2px);
+	background: var(--h-surface);
+	color: var(--h-text);
+	text-decoration: none;
+	box-shadow: var(--ui-shadow-sm, none);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.eui-apps-card:hover,
+.eui-apps-card:focus-visible {
+	color: var(--h-text);
+	text-decoration: none;
+	border-color: color-mix(in srgb, var(--h-primary) 45%, var(--h-border));
+	box-shadow: 0 10px 24px -16px rgba(16, 24, 40, 0.45);
+	transform: translateY(-1px);
+}
+.eui-apps-logo {
+	display: inline-grid;
+	place-items: center;
+	flex: none;
+	width: 46px;
+	height: 46px;
+	padding: 6px;
+	border-radius: 12px;
+	border: 1px solid var(--h-border);
+	background: var(--ui-surface-muted, var(--h-surface));
+}
+.eui-apps-logo img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.eui-apps-logo.is-letter {
+	background: color-mix(in srgb, var(--h-primary) 12%, var(--h-surface));
+	color: var(--h-primary);
+	font-weight: 700;
+	font-size: 18px;
+}
+.eui-apps-card-text {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+.eui-apps-card-text b {
+	font-weight: var(--ui-font-weight-semibold, 600);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.eui-apps-card-text small {
+	font-size: var(--ui-font-size-xs, 12px);
+}
+
+.eui-apps-tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+	gap: 8px;
+}
+.eui-apps-tile {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 9px 12px;
+	border: 1px solid var(--h-border);
+	border-radius: var(--h-radius);
+	background: var(--h-surface);
+	color: var(--h-text);
+	font-size: var(--ui-font-size-sm, 13px);
+	font-weight: var(--ui-font-weight-medium, 500);
+	text-decoration: none;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.eui-apps-tile:hover,
+.eui-apps-tile:focus-visible {
+	color: var(--h-text);
+	text-decoration: none;
+	border-color: color-mix(in srgb, var(--h-primary) 40%, var(--h-border));
+	background: color-mix(in srgb, var(--h-primary) 4%, var(--h-surface));
+}
+.eui-apps-tile-icon {
+	display: inline-grid;
+	place-items: center;
+	flex: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 8px;
+	background: color-mix(in srgb, var(--h-primary) 10%, var(--h-surface));
+	color: var(--h-primary);
+	--icon-stroke: currentColor;
+}
+@media (max-width: 640px) {
+	.eui-apps-head {
+		padding: 18px;
+	}
+	.eui-apps-filter {
+		width: 100%;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.eui-apps-card {
+		transition: none;
+	}
+	.eui-apps-card:hover {
+		transform: none;
+	}
+}

@@ -62,6 +62,8 @@ function nav(shell, view) {
 			return `<aside class="sk-side sk-exec"><span class="sk-brand"><b class="gold"></b>${bar("50%")}</span>${items(1, 0)}<span class="sk-sec"></span>${items(5, -1)}<span class="sk-sec"></span>${items(2, -1)}</aside>`;
 		case "department":
 			return `<aside class="sk-side"><span class="sk-switch"><b></b>${bar("40%")}</span><span class="sk-sec"></span>${items(3, 0)}<span class="sk-sec"></span>${items(4, -1)}</aside>`;
+		case "signature":
+			return `<aside class="sk-side sk-sig"><span class="sk-brand"><b class="sig"></b>${bar("52%")}</span><span class="sk-pill-search dark"></span><span class="sk-sec"></span>${items(4, 0)}<span class="sk-sec"></span>${items(4, -1)}</aside>`;
 		case "icon-rail":
 			return `<aside class="sk-rail">${repeat(7, (i) => `<b class="${i === 0 ? "on" : ""}"></b>`)}</aside>`;
 		default:
@@ -80,6 +82,8 @@ function header(shell, title) {
 			return `<header class="sk-top">${bar("80px")}<span class="sp"></span><span class="sk-select"></span><span class="sk-select"></span><b class="sk-dot"></b></header>`;
 		case "department-tabs":
 			return `<header class="sk-top sk-tabs">${repeat(7, (i) => `<span class="${i === 0 ? "on" : ""}">${bar(`${30 + ((i * 7) % 20)}px`)}</span>`)}<span class="sp"></span><b class="sk-av"></b></header>`;
+		case "brand":
+			return `<header class="sk-top sk-top-brand">${bar("16%", "title")}<span class="sp"></span><span class="sk-search pill"></span><b class="sk-dot"></b><b class="sk-av"></b></header>`;
 		case "command":
 			return `<div class="sk-headless"><span class="sk-title big">${escapeHtml(title)}</span><span class="sp"></span><span class="sk-search pill"></span></div>`;
 		default:
@@ -109,6 +113,8 @@ function home(shell) {
 			return `<div class="sk-head">${bar("30%", "title serif")}</div>${kpis(5, "big")}<div class="sk-row grow">${chart("bars")}${listCard(4)}</div><div class="sk-row">${listCard(3)}${listCard(3)}</div>`;
 		case "department":
 			return `<div class="sk-head">${bar("24%", "title")}<span class="sp"></span>${repeat(3, () => '<i class="sk-btn"></i>')}<i class="sk-btn pri"></i></div>${kpis(4)}<div class="sk-row grow">${listCard(4)}${listCard(3)}${listCard(2)}</div>`;
+		case "signature":
+			return `<span class="sk-sig-hero">${bar("22%")}${bar("38%", "title")}<span class="sp"></span><span class="sk-sig-actions"><i class="sk-btn pri"></i><i class="sk-btn"></i></span></span>${kpis(4)}<div class="sk-row grow">${chart()}${listCard(4, true)}</div>`;
 		case "minimal":
 			return `<div class="sk-head">${bar("14%", "title")}</div><span class="sk-underline"></span><div class="sk-row grow"><span class="sk-plain">${repeat(6, () => `<span class="sk-line">${bar("60%")}</span>`)}</span><span class="sk-plain">${repeat(6, () => `<span class="sk-line">${bar("72%")}</span>`)}</span></div>`;
 		default:
@@ -133,6 +139,8 @@ function form(shell) {
 			return `${head}<span class="sk-next"><b></b>${bar("30%")}<span class="sp"></span>${repeat(3, () => '<i class="sk-btn"></i>')}</span><div class="sk-row grow"><span class="sk-card sk-form">${body}</span>${side}</div>`;
 		case "hairline":
 			return `${head}<span class="sk-form hairline">${body}</span>`;
+		case "elevated":
+			return `${head}<div class="sk-row grow"><span class="sk-card sk-form soft elevated">${body}</span><span class="sk-fside"><span class="sk-card soft sk-sum">${bar("40%")}<em></em>${lines(2)}</span><span class="sk-card soft">${lines(3)}</span></span></div>`;
 		case "bands":
 			return `${head}<div class="sk-row grow"><span class="sk-card sk-form bands">${body}</span>${side}</div>`;
 		default:
@@ -156,6 +164,8 @@ function list(shell) {
 			return `${head}<span class="sk-qtabs">${repeat(3, (i) => `<i class="${i === 1 ? "on" : ""} wide"></i>`)}</span><span class="sk-card">${rows(7)}</span>`;
 		case "hairline":
 			return `${head}<span class="sk-plain">${rows(10, false)}</span>`;
+		case "elevated":
+			return `${head}<span class="sk-qtabs">${repeat(4, (i) => `<i class="${i === 0 ? "on" : ""}"></i>`)}</span><span class="sk-card soft sk-elevated">${rows(8)}</span>`;
 		default:
 			return `${head}<span class="sk-card"><span class="sk-filters">${repeat(4, () => "<i></i>")}</span>${rows(8)}</span>`;
 	}

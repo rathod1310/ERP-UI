@@ -2,7 +2,7 @@
 
 import frappe
 
-from erpnext_ui.core import experience, themes
+from erpnext_ui.core import branding, experience, themes
 from erpnext_ui.core.preferences import USER_SETTINGS_KEY
 from erpnext_ui.core.settings import SETTINGS_DOCTYPE, apply_defaults
 from erpnext_ui.experience import resolve as exp_resolve
@@ -16,12 +16,14 @@ def after_install():
 	sync_standard_themes()
 	sync_standard_experiences()
 	ensure_settings()
+	branding.apply_site_branding()
 
 
 def after_migrate():
 	sync_standard_themes()
 	sync_standard_experiences()
 	ensure_settings()
+	branding.apply_site_branding()
 
 
 def after_uninstall():

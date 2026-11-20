@@ -95,6 +95,7 @@ export function normaliseExperience(raw) {
 		native_home_page: typeof raw.native_home_page === "string" ? raw.native_home_page : null,
 		// False on a site that has not been migrated (no ui-home page yet).
 		home_available: raw.home_available === undefined ? true : Boolean(raw.home_available),
+		apps_page: typeof raw.apps_page === "string" && /^[a-z][a-z-]{0,40}$/.test(raw.apps_page) ? raw.apps_page : null,
 		available,
 	};
 }

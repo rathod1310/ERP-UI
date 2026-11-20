@@ -139,14 +139,14 @@
    "fieldname": "shell_nav",
    "fieldtype": "Select",
    "label": "Navigation",
-   "options": "structured\nfloating\napp-rail\nexecutive\ndepartment\nicon-rail"
+   "options": "structured\nfloating\napp-rail\nexecutive\ndepartment\nicon-rail\nsignature"
   },
   {
    "default": "classic",
    "fieldname": "shell_header",
    "fieldtype": "Select",
    "label": "Header",
-   "options": "classic\ncommand\nsearch\nmanagement\ndepartment-tabs\nnone"
+   "options": "classic\ncommand\nsearch\nmanagement\ndepartment-tabs\nnone\nbrand"
   },
   {
    "default": "none",
@@ -160,7 +160,7 @@
    "fieldname": "shell_home",
    "fieldtype": "Select",
    "label": "Home",
-   "options": "workspace\ndashboard\nhub\noverview\ndepartment\nminimal"
+   "options": "workspace\ndashboard\nhub\noverview\ndepartment\nminimal\nsignature"
   },
   {
    "fieldname": "column_break_shell",
@@ -171,14 +171,14 @@
    "fieldname": "shell_form",
    "fieldtype": "Select",
    "label": "Forms",
-   "options": "bands\nfacts\nstandard\nsummary\nnext-step\nhairline"
+   "options": "bands\nfacts\nstandard\nsummary\nnext-step\nhairline\nelevated"
   },
   {
    "default": "lined",
    "fieldname": "shell_list",
    "fieldtype": "Select",
    "label": "Lists",
-   "options": "lined\ncard-table\nstatus-tabs\ndata-summary\nmy-work\nhairline"
+   "options": "lined\ncard-table\nstatus-tabs\ndata-summary\nmy-work\nhairline\nelevated"
   },
   {
    "default": "traditional",
@@ -291,7 +291,7 @@
  ],
  "index_web_pages_for_search": 0,
  "links": [],
- "modified": "2026-11-04 10:00:00.000000",
+ "modified": "2026-11-20 10:00:00.000000",
  "modified_by": "Administrator",
  "module": "ERPNext UI",
  "name": "UI Experience",

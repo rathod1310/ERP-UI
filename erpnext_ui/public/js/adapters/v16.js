@@ -58,6 +58,56 @@ export const v16Adapter = {
 
 		this.addMenuItem(f);
 		this.installNavigation(engine, env);
+		this.markVersion(f, env);
+		return true;
+	},
+
+	/** html[data-ui-frappe="<major>"] for the few rules that differ between v16 and v17. */
+	markVersion(f, env) {
+		const major = f.boot && f.boot.erpnext_ui && f.boot.erpnext_ui.frappe_major;
+		const root = env.win && env.win.document && env.win.document.documentElement;
+		if (root && major) root.setAttribute("data-ui-frappe", String(major));
+	},
+
+	/**
+	 * "All apps" opens the route `resolveRoute()` returns (the experience's
+	 * own apps page, or Frappe's apps screen). v17 builds the row in
+	 * SidebarHeader.all_apps_item, whose href is the empty route (the home),
+	 * so the row is given an action instead. Elsewhere a click on a row
+	 * labelled "All apps" is redirected the same way.
+	 */
+	installAllApps(resolveRoute) {
+		const env = this._env || {};
+		const f = env.frappe;
+		const win = env.win;
+		if (!f || this._allAppsInstalled) return false;
+		this._allAppsInstalled = true;
+		const open = () => f.set_route(resolveRoute());
+		const Header = f.ui && f.ui.SidebarHeader;
+		if (Header && Header.prototype && typeof Header.prototype.all_apps_item === "function") {
+			const original = Header.prototype.all_apps_item;
+			Header.prototype.all_apps_item = function () {
+				const item = { ...original.call(this) };
+				delete item.href;
+				item.onclick = open;
+				return item;
+			};
+			return true;
+		}
+		const doc = win && win.document;
+		if (!doc) return false;
+		const label = (typeof win.__ === "function" ? win.__("All apps") : "All apps").trim();
+		doc.addEventListener(
+			"click",
+			(event) => {
+				const row = event.target && event.target.closest && event.target.closest("a, button, [role='menuitem']");
+				if (!row || (row.textContent || "").trim() !== label) return;
+				event.preventDefault();
+				event.stopPropagation();
+				open();
+			},
+			true
+		);
 		return true;
 	},
 

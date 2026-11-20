@@ -21,6 +21,7 @@ import {
 	formLink,
 	ago,
 	listRoute,
+	navigableWorkspaces,
 } from "./common.js";
 
 /* ---------- Frappe's own Home workspace content (Classic, Minimal) ---------- */
@@ -139,8 +140,7 @@ const CATEGORIES = [
 const RECENT_KEY = "erpnext_ui:hub-recent";
 
 function workspaces() {
-	const pages = (frappe.boot.workspaces && frappe.boot.workspaces.pages) || [];
-	return pages.filter((p) => p && !p.parent_page && p.is_hidden !== 1);
+	return navigableWorkspaces();
 }
 
 function recentApps(all) {
@@ -327,7 +327,58 @@ function department(root, pack, data, { reload }) {
 	);
 }
 
-export const DESIGNS = { workspace, dashboard, hub, overview, department, minimal };
+/* ---------- Signature Enterprise: branded command centre ---------- */
+function signature(root, pack, data) {
+	const brand = (frappe.boot.erpnext_ui && frappe.boot.erpnext_ui.brand) || {};
+	const apps = workspaces();
+	const attention = [...(data.approvals || []).map((r) => ["approval", r]), ...(data.assigned || []).map((r) => ["todo", r])];
+	const meta = [esc(longDate(data.today)), data.company ? esc(data.company) : ""].filter(Boolean).join(" · ");
+	root.innerHTML = `
+		<section class="eui-sig-hero">
+			<div class="eui-sig-hero-text">
+				<small>${meta}</small>
+				<h2>${esc(greeting(data.user.first_name))}</h2>
+				<p>${esc(__("Here is where your business stands today."))}</p>
+			</div>
+			<div class="eui-sig-hero-side">
+				<button type="button" class="eui-sig-search" data-eui-search>${icon("search", "sm")}<span>${esc(
+					__("Search documents, reports and settings")
+				)}</span><kbd>Ctrl K</kbd></button>
+				<div class="eui-home-actions">${createButtons(data.create, { max: 4 })}</div>
+			</div>
+			${brand.mark ? `<img class="eui-sig-hero-mark" src="${esc(brand.mark)}" alt="" aria-hidden="true">` : ""}
+		</section>
+		<div class="eui-kpis eui-sig-kpis" data-cards></div>
+		<div class="eui-home-grid two-one">
+			<div data-chart></div>
+			${section(
+				__("Needs your attention"),
+				attention.length
+					? [approvalRows(data.approvals), todoRows(data.assigned)].filter(Boolean).join("")
+					: empty(__("You are all caught up.")),
+				{ cls: "eui-sig-attention", extra: attention.length ? `<span class="eui-sig-count">${attention.length}</span>` : "" }
+			)}
+		</div>
+		${
+			apps.length
+				? `<section class="eui-home-card eui-sig-apps"><header><h3>${esc(__("Your workspaces"))}</h3><small>${esc(
+						__("{0} areas", [apps.length])
+				  )}</small></header><div class="eui-sig-app-grid">${apps
+						.map(
+							(p) => `<a class="eui-sig-app" href="${esc(workspaceRoute(p))}"><span class="eui-sig-app-icon">${icon(
+								p.icon || "folder-normal",
+								"md"
+							)}</span><span>${esc(__(p.title || p.label || p.name))}</span></a>`
+						)
+						.join("")}</div></section>`
+				: ""
+		}
+		${section(__("Recently updated by you"), docRows(data.recent) || empty(__("Documents you change will appear here.")))}`;
+	renderCards(root.querySelector("[data-cards]"), pack.home.cards);
+	renderChart(root.querySelector("[data-chart]"), pack.home.charts, { title: __("Revenue trend") });
+}
+
+export const DESIGNS = { workspace, dashboard, hub, overview, department, minimal, signature };
 
 export function render(design, root, pack, data, options) {
 	bindActions(root);

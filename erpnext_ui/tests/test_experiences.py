@@ -43,10 +43,11 @@ def pack(key):
 
 
 class TestPackRegistry(unittest.TestCase):
-	def test_six_packs_in_order(self):
+	def test_seven_packs_in_order(self):
 		self.assertEqual(
 			list(packs.PACKS),
 			[
+				"signature-enterprise",
 				"classic-business",
 				"modern-business",
 				"application-hub",
@@ -121,7 +122,7 @@ class TestResolution(unittest.TestCase):
 
 	def test_available_always_includes_site_default(self):
 		self.assertEqual(resolve.available(self.catalog, ["executive-suite"], "classic-business"), ["classic-business", "executive-suite"])
-		self.assertEqual(len(resolve.available(self.catalog, [], "classic-business")), 6)
+		self.assertEqual(len(resolve.available(self.catalog, [], "classic-business")), 7)
 
 	def test_apply_respects_open_groups(self):
 		p = self.catalog["modern-business"]
@@ -203,7 +204,7 @@ class TestExperiencePreferences(UITestCase):
 		config = build_config()
 		self.assertEqual((config["experience"]["key"], config["experience"]["source"]), ("classic-business", "site"))
 		self.assertEqual(config["experience"]["shell"]["home"], "workspace")
-		self.assertEqual(len(config["experience"]["available"]), 6)
+		self.assertEqual(len(config["experience"]["available"]), 7)
 
 	def test_choose_an_experience_changes_everything(self):
 		frappe.set_user(USER_A)

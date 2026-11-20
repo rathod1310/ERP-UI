@@ -1,3 +1,6 @@
+import frappe
+
+from erpnext_ui.core import branding
 from erpnext_ui.core.config import safe_build_config
 
 # Frappe's own pages that must never be replaced by an experience home.
@@ -23,4 +26,9 @@ def extend_bootinfo(bootinfo):
 		exp["native_home_page"] = native
 		if exp.get("home_page") and native and native not in KEEP_HOME_PAGES and config.get("adapter"):
 			bootinfo.home_page = exp["home_page"]
+	config["brand"] = branding.config()
 	bootinfo.erpnext_ui = config
+	try:
+		branding.apply_to_boot(bootinfo)
+	except Exception:
+		frappe.log_error("SKYDOTERP branding failed during boot")

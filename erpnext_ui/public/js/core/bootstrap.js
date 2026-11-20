@@ -161,6 +161,8 @@ function startExperience(experience, raw, logger, adapter) {
 		experience.init(raw && raw.experience);
 		if (adapter && typeof adapter.addRouteListener === "function")
 			adapter.addRouteListener((route) => experience.onRouteChange(route));
+		if (adapter && typeof adapter.installAllApps === "function")
+			adapter.installAllApps(() => experience.allAppsRoute());
 		logger.debug("experience", experience.active ? experience.current.key : "inactive");
 	} catch (error) {
 		// An experience problem keeps the themed Desk with its layout.

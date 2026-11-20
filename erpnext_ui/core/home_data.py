@@ -17,7 +17,7 @@ from frappe.utils import cint, getdate, nowdate
 from erpnext_ui.experience.packs import DEPARTMENTS, QUICK_CREATE, RECENT_DOCTYPES
 
 CACHE_SECONDS = 60
-DESIGNS = ("workspace", "dashboard", "hub", "overview", "department", "minimal")
+DESIGNS = ("workspace", "dashboard", "hub", "overview", "department", "minimal", "signature")
 
 
 def _cache_key(design: str, department: str | None) -> str:
@@ -272,7 +272,7 @@ def build(design: str, department: str | None = None) -> dict:
 		"company": frappe.defaults.get_user_default("Company"),
 		"today": nowdate(),
 	}
-	if design in ("dashboard", "hub", "workspace", "minimal"):
+	if design in ("dashboard", "hub", "workspace", "minimal", "signature"):
 		data["create"] = creatable(QUICK_CREATE)
 		data["recent"] = _safe(recent_documents, [])
 	if design == "overview":
@@ -281,8 +281,10 @@ def build(design: str, department: str | None = None) -> dict:
 		data["activity"] = _safe(activity, [])
 	if design == "department":
 		data.update(department_board(department))
-	if design == "dashboard":
+	if design in ("dashboard", "signature"):
 		data["assigned"] = _safe(assigned_to_me, [])
+	if design == "signature":
+		data["approvals"] = _safe(awaiting_approval, [])
 	return data
 
 

@@ -12,6 +12,11 @@
 
 import { HOME_PAGE, SHELL_ATTRIBUTES, findPack, normaliseExperience } from "./resolve.js";
 
+// Frappe's apps screen. Back, Home and old links that land on it open the
+// experience home instead; only "All apps" opens it (allowLauncherOnce).
+export const LAUNCHER_PAGE = "desktop";
+const LAUNCHER_PASS_MS = 10000;
+
 export const EXPERIENCE_EVENTS = { applied: "erpnext-ui:experience-applied" };
 export const EXPERIENCE_ATTRIBUTES = ["data-ui-x", "data-ui-x-preview", ...Object.values(SHELL_ATTRIBUTES)];
 
@@ -32,6 +37,7 @@ export class ExperienceEngine {
 		this.active = false;
 		this.current = null;
 		this.nativeHome = null;
+		this.launcherPass = false;
 	}
 
 	init(raw) {
@@ -108,6 +114,22 @@ export class ExperienceEngine {
 		this.boot.home_page = own ? HOME_PAGE : this.nativeHome;
 	}
 
+	/**
+	 * Where "All apps" goes: the experience's own apps page when the site has
+	 * it, otherwise Frappe's apps screen (let through once).
+	 */
+	allAppsRoute() {
+		const page = this.active && this.config && this.config.apps_page;
+		if (page) return page;
+		this.allowLauncherOnce();
+		return LAUNCHER_PAGE;
+	}
+
+	/** The next visit to the launcher is shown, not redirected. */
+	allowLauncherOnce() {
+		this.launcherPass = Date.now();
+	}
+
 	/** True while the experience has its own home that replaces Frappe's launcher. */
 	get ownsHome() {
 		return Boolean(this.active && this.boot && this.boot.home_page === HOME_PAGE);
@@ -120,8 +142,15 @@ export class ExperienceEngine {
 	 */
 	onRouteChange(route) {
 		const first = Array.isArray(route) ? route[0] : route;
-		if (!this.ownsHome || !this.goHome || !this.nativeHome || first !== this.nativeHome) return false;
+		if (!this.ownsHome || !this.goHome || !this.nativeHome) return false;
 		if (this.nativeHome === HOME_PAGE || this.nativeHome === "setup-wizard") return false;
+		if (first !== this.nativeHome && first !== LAUNCHER_PAGE) return false;
+		// "All apps" asked for the launcher on purpose: show it this once.
+		if (this.launcherPass && Date.now() - this.launcherPass < LAUNCHER_PASS_MS) {
+			this.launcherPass = false;
+			return false;
+		}
+		this.launcherPass = false;
 		try {
 			this.goHome();
 		} catch (e) {
