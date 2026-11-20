@@ -18,3 +18,8 @@ extend_bootinfo = "erpnext_ui.boot.extend_bootinfo"
 after_install = "erpnext_ui.install.after_install"
 after_migrate = "erpnext_ui.install.after_migrate"
 after_uninstall = "erpnext_ui.install.after_uninstall"
+
+# The About dialog lists apps by their hook titles and logos; show the brand.
+override_whitelisted_methods = {
+	"frappe.utils.change_log.get_versions": "erpnext_ui.api.branding.get_versions",
+}

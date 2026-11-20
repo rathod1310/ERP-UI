@@ -87,3 +87,15 @@ def _update_single(doctype: str, values: dict) -> None:
 	if changes:
 		frappe.db.set_single_value(doctype, changes)
 		frappe.clear_cache(doctype=doctype)
+
+
+def brand_versions(versions: dict) -> dict:
+	"""The About dialog's app list with the product shown as the brand."""
+	for app, info in (versions or {}).items():
+		if not isinstance(info, dict):
+			continue
+		if app in ("erpnext", "erpnext_ui") or info.get("title") in REPLACED_TITLES:
+			info["title"] = BRAND_NAME if app != "erpnext_ui" else f"{BRAND_NAME} UI"
+			info["logo"] = MARK
+			info["color"] = None
+	return versions
